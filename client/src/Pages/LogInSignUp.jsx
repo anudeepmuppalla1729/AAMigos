@@ -54,6 +54,7 @@ function LogInSignUp() {
           <form onSubmit={handleSubmit}>
             <input
                 type="email"
+                className='border border-black rounded-md p-2'
                 placeholder={"Email Id"}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
