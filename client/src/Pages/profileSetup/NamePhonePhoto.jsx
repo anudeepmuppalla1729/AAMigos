@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {useNavigate} from "react-router-dom";
+// import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import Logo from "../../assets/Logo.png"
-import {preview} from "vite";
+// import {preview} from "vite";
 
 function NamePhonePhoto() {
   const [name, setName] = useState('');
