@@ -4,18 +4,24 @@ import './App.css'
 import {BrowserRouter, Navigate, Route, Router, Routes} from "react-router-dom";
 import './index.css';
 import LogInSignUp from "./Pages/LogInSignUp.jsx";
-import NamePhonePhoto from './Pages/profileSetup/NamePhonePhoto.jsx';
+import UserProfileSetup from './Pages/profileSetup/UserProfileSetup.jsx';
+import AgentProfileSetup from './Pages/profileSetup/AgentProfileSetup.jsx';
+import Home from "./Pages/Home.jsx";
+import { AuthProvider } from './context/AuthContext.jsx';
 
 function App() {
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route path={"/"} element={<Navigate to="/login" replace />}/>
-          <Route path={"/login"} element={<LogInSignUp />}/>
-          <Route path={'/name-phone-photo'} element={<NamePhonePhoto />} />
-          {/*<Route path={"/dashboard"} element={<Dashboard />}/>*/}
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path={"/"} element={<Home />}/>
+            <Route path={"/login"} element={<LogInSignUp />}/>
+            <Route path={'/user/setupProfile'} element={<UserProfileSetup />} />
+            <Route path={'/agent/setupProfile'} element={<AgentProfileSetup />} />
+            {/* <Route path={"/dashboard"} element={<Dashboard />}/> */}
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     );
 }
 
