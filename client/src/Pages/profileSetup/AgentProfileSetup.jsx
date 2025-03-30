@@ -89,8 +89,8 @@ function AgentProfileSetup() {
 
   return (
     <div className='w-screen h-screen bg-[#0d1117] text-white flex flex-col items-center justify-center p-4'>
-      <img src={Logo} alt="AAMigo's Logo" className='w-[70%] max-w-[250px] mb-2'/>
-      <div className='bg-[#10141a] w-full max-w-[450px] p-8 rounded-[20px] border border-gray-700 relative'>
+      <img src={Logo} alt="AAMigo's Logo" className='w-[60%] max-w-[200px] mb-2'/>
+      <div className='bg-[#10141a] w-full max-w-[400px] p-6 rounded-[20px] border border-gray-700 relative'>
         {currentStep !== 1 && (
           <button 
             onClick={() => setCurrentStep(prevStep => prevStep - 1)} 
@@ -118,7 +118,7 @@ function AgentProfileSetup() {
           <form className='flex flex-col items-center gap-8 mt-8'>
             <div className='flex flex-col items-center'>
               <div className='relative'>
-                <div className='w-24 h-24 rounded-full bg-[#2d3035] overflow-hidden flex items-center justify-center'>
+                <div className='w-20 h-20 rounded-full bg-[#2d3035] overflow-hidden flex items-center justify-center'>
                   {previewUrl ? (
                     <img src={previewUrl} alt="Profile Preview" className='w-full h-full object-cover'/>
                   ) : (
@@ -182,9 +182,9 @@ function AgentProfileSetup() {
           </form>
         ) : currentStep === 2 ? (
           // Step 2: Address Details
-          <form className='flex flex-col items-center gap-4 mt-4'>
-            <h2 className="text-xl font-semibold mb-1">Address Details</h2>
-            <div className='w-full max-w-[400px] space-y-3'>
+          <form className='flex flex-col items-center gap-3 mt-2'>
+            <h2 className="text-lg font-semibold mb-1">Address Details</h2>
+            <div className='w-full max-w-[300px] space-y-2'>
               <div className='flex flex-col space-y-1'>
                 <label htmlFor={"dnoInput"} className='text-sm text-gray-300'>Door No/Building Name</label>
                 <input 
@@ -221,7 +221,7 @@ function AgentProfileSetup() {
               <div className='flex flex-col space-y-1'>
                 <label htmlFor={"pincodeInput"} className='text-sm text-gray-300'>Pincode</label>
                 <input 
-                  type="number" 
+                  type="text" 
                   id={"pincodeInput"} 
                   value={pincode}
                   onChange={(e) => setPincode(e.target.value)}
@@ -230,7 +230,7 @@ function AgentProfileSetup() {
               </div>
             </div>
 
-            <div className='w-full max-w-[320px] flex justify-center mt-4'>
+            <div className='w-full max-w-[300px] flex justify-center mt-4'>
               <button 
                 type="button"
                 onClick={handleNextStep}

@@ -79,8 +79,8 @@ function UserProfileSetup() {
 
   return (
     <div className='w-screen h-screen bg-[#0d1117] text-white flex flex-col items-center justify-center p-4'>
-      <img src={Logo} alt="AAMigo's Logo" className='w-[70%] max-w-[250px] mb-2'/>
-      <div className='bg-[#10141a] w-full max-w-[450px] p-8 rounded-[20px] border border-gray-700 relative'>
+      <img src={Logo} alt="AAMigo's Logo" className='w-[60%] max-w-[200px] mb-2'/>
+      <div className='bg-[#10141a] w-full max-w-[400px] p-6 rounded-[20px] border border-gray-700 relative'>
         {currentStep !== 1 && (
           <button 
             onClick={() => setCurrentStep(prevStep => prevStep - 1)} 
@@ -170,9 +170,9 @@ function UserProfileSetup() {
           </form>
         ) : (
           // Step 2: Address Details
-          <form className='flex flex-col items-center gap-4 mt-4'>
-            <h2 className="text-xl font-semibold mb-1">Address Details</h2>
-            <div className='w-full max-w-[400px] space-y-3'>
+          <form className='flex flex-col items-center gap-3 mt-2'>
+            <h2 className="text-lg font-semibold">Address Details</h2>
+            <div className='w-full max-w-[320px] space-y-2'>
               <div className='flex flex-col space-y-1'>
                 <label htmlFor={"dnoInput"} className='text-sm text-gray-300'>Door No/Building Name</label>
                 <input 
@@ -209,7 +209,7 @@ function UserProfileSetup() {
               <div className='flex flex-col space-y-1'>
                 <label htmlFor={"pincodeInput"} className='text-sm text-gray-300'>Pincode</label>
                 <input 
-                  type="number" 
+                  type="text" 
                   id={"pincodeInput"} 
                   value={pincode}
                   onChange={(e) => setPincode(e.target.value)}
