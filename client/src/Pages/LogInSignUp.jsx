@@ -76,7 +76,7 @@ function LogInSignUp() {
   };
 
   return (
-    <div className='bg-[#171615] min-h-screen flex items-center justify-center p-4'>
+    <div className='bg-[#0d1117] min-h-screen flex items-center justify-center p-4'>
       <div className='bg-[#1A1D22] w-full max-w-[800px] flex flex-col md:flex-row justify-start rounded-[15px] overflow-hidden'>
         <div className='w-full md:w-[45%] bg-[#BF400A] py-12 md:py-0 md:rounded-r-[120px] rounded-t-[15px] md:rounded-l-[15px] flex items-center'>
           <div className='flex flex-col items-center justify-center w-full space-y-4 px-4'>

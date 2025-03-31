@@ -7,6 +7,7 @@ import LogInSignUp from "./Pages/LogInSignUp.jsx";
 import UserProfileSetup from './Pages/profileSetup/UserProfileSetup.jsx';
 import AgentProfileSetup from './Pages/profileSetup/AgentProfileSetup.jsx';
 import Home from "./Pages/Home.jsx";
+import AgentDashboard from './Pages/agent/AgentDash.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
             <Route path={"/login"} element={<LogInSignUp />}/>
             <Route path={'/user/setupProfile'} element={<UserProfileSetup />} />
             <Route path={'/agent/setupProfile'} element={<AgentProfileSetup />} />
-            {/* <Route path={"/dashboard"} element={<Dashboard />}/> */}
+            <Route path={"/agent/dashboard"} element={<AgentDashboard />}/>
+            {/* <Route path={"/agent/dashboard"} element={<AgentDashboard />}/> */}
           </Routes>
         </BrowserRouter>
       </AuthProvider>

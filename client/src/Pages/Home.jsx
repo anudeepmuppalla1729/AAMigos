@@ -8,7 +8,7 @@ function Home(){
     const navigate = useNavigate();
 
     return (
-        <div className='bg-[#171615] min-h-screen flex items-center justify-center p-4'>
+        <div className='bg-[#0d1117] min-h-screen flex items-center justify-center p-4'>
             <div className='bg-[#1A1D22] w-full max-w-[800px] flex flex-col items-center justify-center p-8 rounded-[15px]'>
                 <img src={Logo} alt="AAMigo's Logo" className='w-[70%] max-w-[350px] mb-8'/>
                 <div className='flex flex-col items-center justify-center gap-4 w-full max-w-[300px]'>
