@@ -6,8 +6,8 @@ function PickUpReqCard(props) {
     console.log(props.request);
 
     return(
-        <div className='h-[90%] w-[27%] bg-[#ffffff]/5 rounded-[12px] flex flex-col justify-start p-[2%] hover:scale-105 hover:shadow-lg hover:shadow-[#ffffff]/1 transition-all duration-300 ease-in-out'>
-            <div className='w-100% rounded-full flex justify-center gap-5'>
+        <div className='h-[26vh] w-[27%] bg-[#ffffff]/5 rounded-[12px] flex flex-col justify-start p-[1%] hover:scale-105 hover:shadow-lg hover:shadow-[#ffffff]/1 transition-all duration-300 ease-in-out'>
+            <div className='w-100% rounded-full flex justify-center '>
                 <img src = {props.user.profilePic} className='w-[30%] h-[100%]'></img>
             </div>
             <div className='w-100% flex flex-col justify-center items-center'>

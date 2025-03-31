@@ -8,6 +8,10 @@ import UserProfileSetup from './Pages/profileSetup/UserProfileSetup.jsx';
 import AgentProfileSetup from './Pages/profileSetup/AgentProfileSetup.jsx';
 import Home from "./Pages/Home.jsx";
 import AgentDashboard from './Pages/agent/AgentDash.jsx';
+import AgentPickup from './Pages/agent/AgentPickup.jsx';
+import AgentProfilePage from './Pages/agent/AgentProfile.jsx';
+import AgentOrders from './Pages/agent/AgentOrders.jsx';
+import AgentProfileEdit from './Pages/agent/AgentProfileEdit.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 
 function App() {
@@ -20,6 +24,10 @@ function App() {
             <Route path={'/user/setupProfile'} element={<UserProfileSetup />} />
             <Route path={'/agent/setupProfile'} element={<AgentProfileSetup />} />
             <Route path={"/agent/dashboard"} element={<AgentDashboard />}/>
+            <Route path={"/agent/pickup"} element={<AgentPickup />}/>
+            <Route path={"/agent/profile"} element={<AgentProfilePage />}/>
+            <Route path={"/agent/orders"} element={<AgentOrders />}/>
+            <Route path={"/agent/editProfile"} element={<AgentProfileEdit />}/>
             {/* <Route path={"/agent/dashboard"} element={<AgentDashboard />}/> */}
           </Routes>
         </BrowserRouter>

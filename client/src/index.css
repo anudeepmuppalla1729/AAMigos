@@ -1,4 +1,5 @@
 @import "tailwindcss";
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap'); */
 
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
@@ -6,6 +7,10 @@ input[type='number']::-webkit-outer-spin-button {
   margin: 0;
 }
 
-input[type='number'] {
+/* input[type='number'] {
   -moz-appearance: textfield;
-}
+} */
+
+/* * {
+  font-family: 'Lato', sans-serif;
+} */
