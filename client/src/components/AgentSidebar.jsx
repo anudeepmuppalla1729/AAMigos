@@ -10,7 +10,7 @@ function AgentSidebar() {
   const navigate = useNavigate();
   const gradientStyle = {
     background:
-        "linear-gradient(to bottom, rgba(255, 92, 141, 0.3), rgba(255, 177, 153, 0.2))",
+        "linear-gradient(to bottom, rgba(255, 92, 141, 0.3), rgba(255, 177, 153, 0.3))",
   };
 
   return (

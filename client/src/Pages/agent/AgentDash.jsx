@@ -8,7 +8,9 @@ import AgentNavbar from '../../components/AgentNavbar';
 import OngoingAssignments from '../../components/OngoingAssignments';
 import s23 from '../../assets/s23.png'
 
+
 function AgentDashboard() {
+    const navigate = useNavigate();
     let user = {
         name: "John Doe",
         profilePic: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
@@ -29,14 +31,14 @@ function AgentDashboard() {
             <div className='w-[100vw] h-[10vh] bg-[#171925]'><AgentNavbar/></div>
             <div className='bg-[#0d1117] h-[88%] w-[20%] flex justify-start items-center pl-11 pt-[2%]'><AgentSidebar/></div>
             <div className='h-[90%] w-[72vw] flex items-center pl-8'>
-                <div className='bg-[#0d1117] h-[85%] w-[90] flex flex-wrap gap-[1.5vw]'>
-                    <div className='bg-[#161b22] w-[100%] h-[50%] flex flex-wrap rounded-[15px]'>
+                <div className='bg-[#0d1117] h-[85%] w-[90] flex flex-wrap gap-[1.5vw] '>
+                    <div className='bg-[#161b22] w-[100%] h-[50%] flex flex-wrap rounded-[15px] '>
                         <div className='w-full h-[25%] text-white flex justify-center items-center'>Pick Up Requests</div>
                         <div className='w-full h-[75%] flex justify-evenly'>
                             <PickUpReqCard user={user} request={request} />
                             <PickUpReqCard user={user} request={request}/>
                             <PickUpReqCard user={user} request={request}/>
-                            <button className='mb-7 hover:scale-110 hover:shadow-lg hover:shadow-[#ffffff]/1 transition-all duration-300 ease-in-out'><img src={arrow}></img></button>
+                            <button className='mb-7 hover:scale-110 hover:shadow-lg hover:shadow-[#ffffff]/1 transition-all duration-300 ease-in-out' onClick={()=>{navigate("/agent/pickup")}}><img src={arrow}></img></button>
                         </div>   
                     </div>
                     <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[4%] text-white flex flex-wrap justify-center gap-[15px]'>
