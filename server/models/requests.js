@@ -6,7 +6,7 @@ const requestSchema = new mongoose.Schema({
   issueDescription: String,
   status: { 
     type: String, 
-    enum: ["Pending", "Approved", "PickedUp", "FreeApproval", "InRepair", "Delivering", "Paid", "Cancelled"],
+    enum: ["Pending", "Approved", "PickedUp", "FreeApproval", "InRepair", "Delivering", "Paid", "Completed", "Cancelled"],
     default: "Pending" 
   },
   assignedAgent: { type: mongoose.Schema.Types.ObjectId, ref: "Agent" },

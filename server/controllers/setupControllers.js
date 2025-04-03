@@ -27,9 +27,6 @@ export const setupAgent = async(req, res) =>{
     try{
         const {name, phone, dno, street, city, pincode , panCard , adhaarNumber} = req.body;
         const agentId = req.agent.id;
-        if(!req.file){
-            return res.status(400).json({error: "No profile picture uploaded"});
-        }
         const agent = await Agent.findById(agentId);
         if(!agent){
             return res.status(404).json({message: "Agent not found"});
