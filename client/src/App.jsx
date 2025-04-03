@@ -12,6 +12,10 @@ import AgentPickup from './Pages/agent/AgentPickup.jsx';
 import AgentProfilePage from './Pages/agent/AgentProfile.jsx';
 import AgentOrders from './Pages/agent/AgentOrders.jsx';
 import AgentProfileEdit from './Pages/agent/AgentProfileEdit.jsx';
+import CustomerDashboard from './Pages/customer/CustomerDash.jsx';
+import CustomerOrder from './Pages/customer/CustomerOrder.jsx';
+import CustomerProfile from './Pages/customer/CustomerProfile.jsx';
+import CustomerProfileEdit from './Pages/customer/CustomerProfileEdit.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 
 function App() {
@@ -19,16 +23,19 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path={"/"} element={<Home />}/>
+            <Route path={"*"} element={<Home />}/>
             <Route path={"/login"} element={<LogInSignUp />}/>
-            <Route path={'/user/setupProfile'} element={<UserProfileSetup />} />
+            <Route path={'/customer/setupProfile'} element={<UserProfileSetup />} />
             <Route path={'/agent/setupProfile'} element={<AgentProfileSetup />} />
             <Route path={"/agent/dashboard"} element={<AgentDashboard />}/>
             <Route path={"/agent/pickup"} element={<AgentPickup />}/>
             <Route path={"/agent/profile"} element={<AgentProfilePage />}/>
             <Route path={"/agent/orders"} element={<AgentOrders />}/>
             <Route path={"/agent/editProfile"} element={<AgentProfileEdit />}/>
-            {/* <Route path={"/agent/dashboard"} element={<AgentDashboard />}/> */}
+            <Route path={"/customer/dashboard"} element={<CustomerDashboard />}/>
+            <Route path={"/customer/orders"} element={<CustomerOrder />}/>
+            <Route path={"/customer/profile"} element={<CustomerProfile />}/>
+            <Route path={"/customer/editProfile"} element={<CustomerProfileEdit />}/>
           </Routes>
         </BrowserRouter>
       </AuthProvider>

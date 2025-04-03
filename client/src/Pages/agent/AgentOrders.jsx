@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import OrderCard from '../../components/OrderCard';
 import AgentSidebar from '../../components/AgentSideBar';
-import AgentNavbar from '../../components/AgentNavbar';
+import AgentNavbar from '../../components/Navbar';
 import arrow from '../../assets/arrow.png'
 import sampic from '../../assets/s23.png'
 
@@ -24,7 +24,8 @@ function AgentOrders(){
         <div className='bg-[#0d1117] h-[88%] w-[20%] flex justify-start items-center pl-11 pt-[2%]'><AgentSidebar/></div>
         <div className='h-[90%] w-[80vw] flex items-center pl-8 '>
             <div className='bg-[#0d1117] h-[85%] w-[90%]'>
-                <div className='bg-[#161b22] w-[100%] h-[100%] flex flex-col items-center pt-8 rounded-[15px] gap-[1.5vw] overflow-y-scroll scrollbar-hide'>
+                
+                <div className='bg-[#161b22] w-[100%] h-[100%] flex flex-col items-center pt-5 rounded-[15px] gap-[1.5vw] overflow-y-scroll scrollbar-hide'>
                     <style jsx>{`
                         .scrollbar-hide::-webkit-scrollbar {
                             display: none;
@@ -34,6 +35,7 @@ function AgentOrders(){
                             scrollbar-width: none;
                         }
                     `}</style> 
+                    <h1 className='text-white text-xl'>Your Orders</h1>
                 <OrderCard device={device} request={request}/>
                 <OrderCard device={device} request={request}/>
                 <OrderCard device={device} request={request}/>

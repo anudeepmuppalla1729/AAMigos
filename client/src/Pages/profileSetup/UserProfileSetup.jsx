@@ -69,7 +69,7 @@ function UserProfileSetup() {
       });
       console.log("Details are saved.", response.data);
       alert("Profile setup successful!");
-      navigate('/Dashboard');
+      navigate('/customer/Dashboard');
     } catch (error) {
       console.error("Error uploading profile:", error);
       console.error("Error details:", error.response ? error.response.data : error.message);

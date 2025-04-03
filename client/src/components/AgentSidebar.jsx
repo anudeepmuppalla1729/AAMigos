@@ -14,45 +14,48 @@ function AgentSidebar() {
   };
 
   return (
-      
+
         <div
-            className="h-[70vh] w-[90%] md:w-[80%] lg:w-[15vw] rounded-2xl shadow-lg flex flex-col justify-evenly px-4 md:px-6 lg:pl-7 py-4 md:py-6 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg hover:shadow-[#ffffff]/1 transition-all duration-300 ease-in-out"
+            className="h-[65vh] w-[90%] md:w-[80%] lg:w-[15vw] rounded-2xl shadow-lg flex flex-col justify-evenly px-4 md:px-6 lg:pl-7 py-4 md:py-6 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg hover:shadow-[#ffffff]/1 transition-all duration-300 ease-in-out items-center"
             style={gradientStyle}
         >
-          <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200 " onClick={()=>{navigate("/agent/dashboard")}}>
-            <div className="text-xl">
-              <span><img src={dashboard} alt="dashboard" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
+          <div className={"flex flex-col justify-evenly h-full"}>
+            <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/agent/dashboard")}}>
+              <div className="text-xl">
+                <span><img src={dashboard} alt="dashboard" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
+              </div>
+              <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap" >Dashboard</span>
             </div>
-            <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap" >Dashboard</span>
+
+            <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/agent/pickup")}}>
+              <div className="text-xl">
+                <span><img src={orders} alt="orders icon" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
+              </div>
+              <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap">PickUps</span>
+            </div>
+
+            <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/agent/orders")}}>
+              <div className="text-xl">
+                <span><img src={OrdersForAgent} alt="orders icon" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
+              </div>
+              <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap">Orders</span>
+            </div>
+
+            <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/agent/profile")}}>
+              <div className="text-xl">
+                <span><img src={settings} alt="settings icon" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
+              </div>
+              <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap">Profile</span>
+            </div>
+
+            <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200">
+              <div className="text-xl">
+                <span><img src={support} alt="support icon" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
+              </div>
+              <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap">Support</span>
+            </div>
           </div>
 
-          <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/agent/pickup")}}>
-            <div className="text-xl">
-              <span><img src={orders} alt="orders icon" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
-            </div>
-            <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap">PickUps</span>
-          </div>
-
-          <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/agent/orders")}}>
-            <div className="text-xl">
-              <span><img src={OrdersForAgent} alt="orders icon" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
-            </div>
-            <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap">Orders</span>
-          </div>
-
-          <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/agent/profile")}}>
-            <div className="text-xl">
-              <span><img src={settings} alt="settings icon" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
-            </div>
-            <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap">Profile</span>
-          </div>
-
-          <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200">
-            <div className="text-xl">
-              <span><img src={support} alt="support icon" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
-            </div>
-            <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap">Support</span>
-          </div>
         </div>
      
   );

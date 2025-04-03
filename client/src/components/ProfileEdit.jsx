@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
-const AgentEdits = () => {
+import {useAuth} from "../context/AuthContext.jsx";
+
+const ProfileEdit = () => {
+  const {isAgent} = useAuth();
   const [profilePic, setProfilePic] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
   const handleProfilePicChange = (e) => {
@@ -73,23 +76,27 @@ const AgentEdits = () => {
        <div className='flex flex-col'> <label htmlFor='pincode' className='pl-3'>Pin Code</label>
         <input type='text' id='pincode' className='w-[80%] bg-[rgba(255, 255, 255, 0.02)]  pl-3 border-gray-400 border-[0.3px]  rounded-[15px] py-1 gap-x-2 mb-2'></input></div></div></div>
     </div>
-    <div className='flex flex-col justify-evenly pl-6 bg-[#ffffff]/5 rounded-[15px] p-5 gap-y-4'>
-    <h2 className='pl-2 '> Identification Details</h2>
-    <div className='flex  gap-x-3 pl-11'>
-      <div className='flex flex-col'>
-      <label htmlFor='aadhar'className='pl-3'>Aadhar Number</label>
-      <input type='text' id='aadhar' className='w-[18vw] bg-[rgba(255, 255, 255, 0.02)]  pl-3 border-gray-400 border-[0.3px]  rounded-[15px] py-1 gap-x-2 mb-2 pl-3'></input>
+      { isAgent ? (
+          <div className='flex flex-col justify-evenly pl-6 bg-[#ffffff]/5 rounded-[15px] p-5 gap-y-4'>
+        <h2 className='pl-2 '> Identification Details</h2>
+        <div className='flex  gap-x-3 pl-11'>
+          <div className='flex flex-col'>
+            <label htmlFor='aadhar'className='pl-3'>Aadhar Number</label>
+            <input type='text' id='aadhar' className='w-[18vw] bg-[rgba(255, 255, 255, 0.02)]  pl-3 border-gray-400 border-[0.3px]  rounded-[15px] py-1 gap-x-2 mb-2 pl-3'></input>
+          </div>
+          <div className='flex flex-col '>
+            <label htmlFor='pan' className='pl-3'>PAN Number</label>
+            <input type='text' id='pan' className='w-[18vw] bg-[rgba(255, 255, 255, 0.02)]  pl-3 border-gray-400 border-[0.3px]  rounded-[15px] py-1 gap-x-2 mb-2 pl-3'></input></div>
+        </div>
       </div>
-      <div className='flex flex-col '>
-      <label htmlFor='pan' className='pl-3'>PAN Number</label>
-      <input type='text' id='pan' className='w-[18vw] bg-[rgba(255, 255, 255, 0.02)]  pl-3 border-gray-400 border-[0.3px]  rounded-[15px] py-1 gap-x-2 mb-2 pl-3'></input></div>
+       ) : null
+      }
+      <div className='w-full flex justify-center items-center  my-7'>
+        <button type="submit" className='w-[40%] bg-[#bf400a] rounded-[15px] py-2'> Submit </button>
       </div>
-    </div>
-    <div className='w-full flex justify-center items-center  my-7'>
-      <button type="submit" className='w-[40%] bg-[#bf400a] rounded-[15px] py-2'> Submit </button>
-    </div>
+
     </div>
   );
 };
 
-export default AgentEdits;
+export default ProfileEdit;

@@ -4,7 +4,7 @@ import axios from 'axios';
 import PickUpReqCard from '../../components/PickUpReqCard';
 import arrow from '../../assets/arrow.png'
 import AgentSidebar from '../../components/AgentSideBar';
-import AgentNavbar from '../../components/AgentNavbar';
+import AgentNavbar from '../../components/Navbar';
 import OngoingAssignments from '../../components/OngoingAssignments';
 import s23 from '../../assets/s23.png'
 
@@ -31,7 +31,7 @@ function AgentDashboard() {
             <div className='w-[100vw] h-[10vh] bg-[#171925]'><AgentNavbar/></div>
             <div className='bg-[#0d1117] h-[88%] w-[20%] flex justify-start items-center pl-11 pt-[2%]'><AgentSidebar/></div>
             <div className='h-[90%] w-[72vw] flex items-center pl-8'>
-                <div className='bg-[#0d1117] h-[85%] w-[90] flex flex-wrap gap-[1.5vw] '>
+                <div className='bg-[#0d1117] h-[85%] w-[100%] flex flex-wrap gap-[1.5vw] '>
                     <div className='bg-[#161b22] w-[100%] h-[50%] flex flex-wrap rounded-[15px] '>
                         <div className='w-full h-[25%] text-white flex justify-center items-center'>Pick Up Requests</div>
                         <div className='w-full h-[75%] flex justify-evenly'>
@@ -41,7 +41,7 @@ function AgentDashboard() {
                             <button className='mb-7 hover:scale-110 hover:shadow-lg hover:shadow-[#ffffff]/1 transition-all duration-300 ease-in-out' onClick={()=>{navigate("/agent/pickup")}}><img src={arrow}></img></button>
                         </div>   
                     </div>
-                    <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[4%] text-white flex flex-wrap justify-center gap-[15px]'>
+                    <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[3%] text-white flex flex-wrap justify-center gap-[15px]'>
                         <h2>Ongoing Assignments</h2>
                         <OngoingAssignments device = {device} request = {request}/>
                         <OngoingAssignments device = {device} request = {request}/>
@@ -52,29 +52,29 @@ function AgentDashboard() {
                             <h5 className="text-[10px]">Earned Till {time}</h5>
                         </div>
 
-                        <div className={"flex flex-col"}>
-                            <div className={"flex justify-between pl-10 pr-10 pt-3"}>
-                            <span className={"flex flex-col items-center"}>
-                                <h3 className={"text-[12px]"}>{device.name}</h3>
-                                <h3 className={"text-[12px]"}>(Order ID: {request.id})</h3>
+                        <div className={"flex flex-col px-10"}>
+                            <div className={"flex justify-between pl-6 pr-6 pt-3"}>
+                            <span className={"flex flex-col items-center "}> 
+                                <h3 className={"text-[13px]"}>{device.name}</h3>
+                                <h3 className={"text-[13px]"}>(Order ID: {request.id})</h3>
                             </span>
-                                <h3 className={"mt-2 text-[12px]"}>{device.cost}/-</h3>
+                                <h3 className={"mt-2 text-[14px]"}>{device.cost}/-</h3>
                             </div>
 
-                            <div className={"flex justify-between p-1 pl-10 pr-10"}>
+                            <div className={"flex justify-between p-1 pl-6 pr-6"}>
                             <span className={"flex flex-col items-center"}>
-                                <h3 className={"text-[12px]"}>{device.name}</h3>
-                                <h3 className={"text-[12px]"}>(Order ID: {request.id})</h3>
+                                <h3 className={"text-[13px]"}>{device.name}</h3>
+                                <h3 className={"text-[13px]"}>(Order ID: {request.id})</h3>
                             </span>
-                                <h3 className={"mt-2 text-[12px]"}>{device.cost}/-</h3>
+                                <h3 className={"mt-2 text-[14px]"}>{device.cost}/-</h3>
                             </div>
 
-                            <div className={"flex justify-between p-1 pl-10 pr-10 pb-7"}>
+                            <div className={"flex justify-between p-1 pl-6 pr-6 pb-7"}>
                             <span className={"flex flex-col items-center"}>
-                                <h3 className={"text-[12px]"}>{device.name}</h3>
-                                <h3 className={"text-[12px]"}>(Order ID: {request.id})</h3>
+                                <h3 className={"text-[13px]"}>{device.name}</h3>
+                                <h3 className={"text-[13px]"}>(Order ID: {request.id})</h3>
                             </span>
-                                <h3 className={"mt-2 text-[12px]"}>{device.cost}/-</h3>
+                                <h3 className={"mt-2 text-[13px]"}>{device.cost}/-</h3>
                             </div>
                         </div>
                     </div>

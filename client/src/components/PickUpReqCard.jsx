@@ -6,7 +6,7 @@ function PickUpReqCard(props) {
     console.log(props.request);
 
     return(
-        <div className='h-[26vh] w-[27%] bg-[#ffffff]/5 rounded-[12px] flex flex-col justify-start p-[1%] hover:scale-105 shadow-[0px_0px_12px_rgba(0,0,0,0.5)] hover:shadow-xl  hover:shadow-[#ffffff]/10 transition-all duration-300 ease-in-out border-[0.7px] border-black border-opacity-1 '>
+        <div className='h-[26vh] w-[27%] bg-[#ffffff]/5 rounded-[12px] flex flex-col justify-start p-[1%] hover:scale-105 shadow-[0px_0px_12px_rgba(0,0,0,0.3)] hover:shadow-l  hover:shadow-[#ffffff]/3 transition-all duration-300 ease-in-out  '>
             <div className='w-100% rounded-full flex justify-center '>
                 <img src = {props.user.profilePic} className='w-[30%] h-[100%]'></img>
             </div>

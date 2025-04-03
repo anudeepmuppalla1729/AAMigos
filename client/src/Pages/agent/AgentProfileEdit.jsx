@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AgentSidebar from '../../components/AgentSideBar';
-import AgentNavbar from '../../components/AgentNavbar';
- import AgentEdits from '../../components/AgentEdit';
+import AgentNavbar from '../../components/Navbar';
+ import AgentEdits from '../../components/ProfileEdit';
 
 
 function AgentProfileEdit() {

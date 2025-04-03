@@ -1,8 +1,9 @@
 import arrow from '../assets/arrow.png'
 function Order(props){
     return(
-        <div className="bg-[#ffffff]/5 w-[96%] h-[20%] flex items-center justify-between px-8 rounded-[15px] text-white hover:scale-102 hover:shadow-lg hover:shadow-[#ffffff]/1 transition-all duration-300 ease-in-out">
+        <div className="bg-[#ffffff]/5 w-[90%] h-[20%] flex items-center justify-between px-8 rounded-[15px] text-white hover:scale-103 shadow-[0px_0px_6px_rgba(0,0,0,0.3)] hover:shadow-l  hover:shadow-[#ffffff]/5 transition-all duration-300 ease-in-out">
     {/* Left Section: Device Image and Name */}
+    
     <div className="flex items-center gap-x-5">
         <img src={props.device.pic} className="w-[50px] h-[80px] object-cover rounded-md " alt="Device" />
         <div className="flex flex-col">

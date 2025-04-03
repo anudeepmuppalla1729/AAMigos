@@ -1,5 +1,5 @@
 import React from "react";
-import AgentNavbar from "../../components/AgentNavbar";
+import AgentNavbar from "../../components/Navbar";
 import AgentSidebar from "../../components/AgentSideBar";
 import PickUpReqCard from "../../components/PickUpReqCard";
 

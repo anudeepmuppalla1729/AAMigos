@@ -32,7 +32,7 @@ function LogInSignUp() {
         const token = response.data.token;
         localStorage.setItem("token", token);
         alert("Registration Successful!");
-        navigate('/user/setupProfile');
+        navigate('/customer/setupProfile');
       } else {
         const response = await axios.post("http://localhost:3000/api/auth/user/login", {
           email,
@@ -42,7 +42,7 @@ function LogInSignUp() {
         const token = response.data.token;
         localStorage.setItem("token", token);
         alert("LogIn Successful!");
-        navigate('/Dashboard');
+        navigate('/customer/Dashboard');
       }
     }
     else{

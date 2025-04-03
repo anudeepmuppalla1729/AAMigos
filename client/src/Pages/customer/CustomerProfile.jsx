@@ -1,10 +1,10 @@
 import React from "react";
 import AgentNavbar from "../../components/Navbar.jsx";
-import AgentSidebar from "../../components/AgentSideBar.jsx";
+import CustomerSidebar from "../../components/CustomerSidebar.jsx";
 import { useNavigate } from "react-router-dom";
 
-function AgentProfilePage() {
-    const navigate = useNavigate();
+function CustomerProfile() {
+  const navigate = useNavigate();
   const address = {
     dno: "10-24",
     streetName: "streetivalli",
@@ -22,7 +22,7 @@ function AgentProfilePage() {
   return (
       <div className='bg-[#0d1117] h-screen w-screen flex flex-wrap'>
         <div className='w-[100vw] h-[10%] bg-[#171925]'><AgentNavbar/></div>
-        <div className='bg-[#0d1117] h-[88%] w-[20vw] flex justify-center pl-6 items-center pt-[2%]'><AgentSidebar/></div>
+        <div className='bg-[#0d1117] h-[88%] w-[20vw] flex justify-center pl-5.5 items-center pt-[2%] pr-5.5'><CustomerSidebar/></div>
         <div className='h-[90%] w-[80vw] flex flex-col items-center text-white justify-evenly'>
           <div className="flex flex-col items-center text-white justify-evenly w-[100%] h-[100%]" >
             <div>
@@ -62,4 +62,4 @@ function AgentProfilePage() {
   );
 }
 
-export default AgentProfilePage;
+export default CustomerProfile;
