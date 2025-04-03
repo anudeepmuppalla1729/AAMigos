@@ -1,15 +1,15 @@
-# AAMigo's
+# AAMigo’s - Smart Device Repair & Pickup Platform
 
-AAMigo's is a full-stack MERN application designed for managing device pickup and repair requests efficiently. The platform connects users with agents who handle device servicing based on predefined service centers, devices, and companies.
+AAMigo’s is a full-stack MERN-based service platform that connects users with repair service centers through pickup agents. It streamlines the device repair process by offering doorstep pickup, repair tracking, and secure delivery.
 
-## Features
+## How It Works:
 
-- User and Agent roles with distinct functionalities
-- Request creation and approval process
-- Real-time status updates using Socket.io
-- Payment processing for non-warranty repairs
-- Manual location entry for service request allocation
-- Communication between users and agents
+1. Users request a device repair via the platform.
+2. Agents pick up the device and take it to a predefined service center.
+3. Repair status is updated in real-time.
+4. Users pay if required and approve the repair.
+
+Agents deliver the repaired device back to the user.
 
 ## Tech Stack
 
