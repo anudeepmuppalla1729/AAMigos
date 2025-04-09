@@ -147,3 +147,34 @@ export const editDetails = async (req,res) =>{
         res.status(500).json({message: "Internal server error"});
     }
 }
+
+export const trackOrder= async (req,res) =>{
+    try{
+        const requestId = req.params.reqId;
+        const request = await Request.findById(requestId)  
+        .populate({
+            path: "device",
+            populate: {
+            path: "model",
+            select: "name img",
+            },
+        })
+        .populate("user", "name profilePicture phone address");
+    } 
+    catch(error){
+        res.status(500).json({message:error.message});
+    }
+}
+
+export const updateStatus = async (req,res) =>{
+    try{
+        const {requestId ,status} =  req.params;
+        const request = await Request.findById(requestId); 
+        request.status = status;
+        await request.save();
+        res.status(200).json({message:"Status updated successfully"});
+    } 
+    catch(error){
+        res.status(500).json({message:error.message});
+    }
+}

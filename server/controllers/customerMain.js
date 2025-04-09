@@ -125,3 +125,37 @@ export const updateDetails = async(req,res) =>{
         res.status(500).json({message: "Internal server error"}); 
     }
 }
+export const trackOrder= async (req,res) =>{
+    try{
+        const requestId = req.params.reqId;
+        const request = await Request.findById(requestId)  
+        .populate({
+            path: "device",
+            populate: {
+            path: "model",
+            select: "name img",
+            },
+        })
+        .populate("agent", "name profilePicture phone");
+    } 
+    catch(error){
+        res.status(500).json({message:error.message});
+    }
+}
+
+export const cancelOrder= async (req,res) =>{
+    try{
+        const requestId = req.params.reqId;
+        const request = await Request.findById(requestId);
+        if(!request){
+            return res.status(404).json({message: "Request not found"});
+       
+        }
+        request.status = "Cancelled";
+        await request.save();
+        return res.status(200).json({message: "Request cancelled successfully"}); 
+    } 
+    catch(error){
+        res.status(500).json({message: "Internal server error"});
+    }
+}
