@@ -59,7 +59,7 @@ export const postRequest = async(req,res) => {
             issue,
             invoicePdfUrl : req.file.path,
         });
-
+    
         const company = await Company.findById(model[0].company);
         const serviceCenter = await ServiceCenter.findOne({company : company._id});
         const newRequest = await Request.create({
@@ -68,7 +68,7 @@ export const postRequest = async(req,res) => {
             status : "Pending",
             selectedServiceCenter : serviceCenter._id,
         }).populate("device").populate("user");
-
+    
         res.status(201).json(newRequest);
     }
     catch(error){

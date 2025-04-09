@@ -11,7 +11,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-    const [isAgent, setIsAgent] = useState(false);
+    const [isAgent, setIsAgent] = useState(null);
 
     const value = {
         isAgent,

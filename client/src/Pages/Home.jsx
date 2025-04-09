@@ -2,10 +2,28 @@ import React from 'react';
 import Logo from '../assets/Logo.png'
 import { useAuth } from '../context/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import {jwtDecode} from 'jwt-decode';
 
 function Home(){
     const { isAgent, setIsAgent } = useAuth();
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+    console.log(token);
+    useEffect(() => {
+        if (token) {
+            const decodedToken = jwtDecode(token);
+            console.log(decodedToken.role);
+            const role = decodedToken.role;
+            if (role === 'agent') {
+                setIsAgent(true);
+                navigate('/agent/dashboard');
+            } else if (role === 'customer') {
+                setIsAgent(false);
+                navigate('/customer/dashboard');
+            }
+        }
+    }, []);
 
     return (
         <div className='bg-[#0d1117] min-h-screen flex items-center justify-center p-4'>
