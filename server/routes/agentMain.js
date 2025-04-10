@@ -19,5 +19,4 @@ router.get("/trackOrder/:reqId",verifyToken, verifyAgent,trackOrder);
 
 router.post("/updateStatus/:reqId/update/:status",verifyToken, verifyAgent,updateStatus);
 
-router.post()
 export default router;

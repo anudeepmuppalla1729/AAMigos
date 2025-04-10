@@ -14,7 +14,6 @@ const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
         folder: 'aamigos_dev',
-        allowedFormats: ["png", "jpg", "jpeg"],
     },
 });
 
