@@ -16,7 +16,15 @@ import CustomerDashboard from './Pages/customer/CustomerDash.jsx';
 import CustomerOrder from './Pages/customer/CustomerOrder.jsx';
 import CustomerProfile from './Pages/customer/CustomerProfile.jsx';
 import CustomerProfileEdit from './Pages/customer/CustomerProfileEdit.jsx';
+import NewOrder from './Pages/customer/NewOrder.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:3000";
+
+const token = localStorage.getItem('token');
+if (token) {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+}
 
 function App() {
   return (
@@ -36,6 +44,7 @@ function App() {
             <Route path={"/customer/orders"} element={<CustomerOrder />}/>
             <Route path={"/customer/profile"} element={<CustomerProfile />}/>
             <Route path={"/customer/editProfile"} element={<CustomerProfileEdit />}/>
+            <Route path={"/customer/newOrder"} element={<NewOrder />}/>
           </Routes>
         </BrowserRouter>
       </AuthProvider>

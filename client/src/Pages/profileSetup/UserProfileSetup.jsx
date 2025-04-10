@@ -61,7 +61,7 @@ function UserProfileSetup() {
         return;
       }
       
-      const response = await axios.post("http://localhost:3000/api/setup/user/setupProfile", formData, {
+      const response = await axios.post("/api/setup/user/setupProfile", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           "Authorization": `Bearer ${token}`
