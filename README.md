@@ -1,4 +1,4 @@
-# AAMigo’s - Smart Device Repair & Pickup Platform
+# AAMigo’s - Smart Device Repair & Pickup Platform (Development Stage)
 
 AAMigo’s is a full-stack MERN-based service platform that connects users with repair service centers through pickup agents. It streamlines the device repair process by offering doorstep pickup, repair tracking, and secure delivery.
 
