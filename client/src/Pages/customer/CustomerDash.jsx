@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState , useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import arrow from '../../assets/arrow.png'
@@ -10,10 +10,22 @@ import iph from '../../assets/iph.png'
 import clock from '../../assets/clock.png'
 import personsupport from '../../assets/personsupport.png'
 import ipadpro from '../../assets/ipadpro.png'
+import RequestedOrdersCarousel from '../../components/RequestedOrdersCarousel'
 
 
 function CustomerDashboard() {
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        const fetchActiveOrders = async () => {
+            try {
+                const res = await axios.get('/api/customer/activeOrders');
+                console.log(res.data);
+            } catch (error) {
+                console.error("Error fetching active orders:", error);
+            }
+        } 
+    },[]);
     let user = {
         name: "John Doe",
         profilePic: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
@@ -42,21 +54,7 @@ function CustomerDashboard() {
                     </div>
                     <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[3%] pt-[2%] px-[2.5s%] text-white flex flex-wrap justify-center gap-[15px]'>
                         <h2 className='pb-2'>Requested Orders</h2>
-                        <div className='w-[100%] flex justify-between '>
-                            <div className='w-[30%] h-full ml-4'>
-                                <img src={ipadpro}></img>
-                            </div>
-                            <div className='w-[60%] h-[100%] flex flex-col justify-between items-center '>
-                            <div className='bg-[#23272c] w-[90%] h-[60%] rounded-[10px] mr-3 flex flex-col items-center justify-center shadow-[0px_0px_6px_rgba(0,0,0,0.3)]'>
-                                <p className='text-[15px]'>MacBook Air</p>
-                                <p className='text-[13px] text-gray-400'>Order ID: #2347685</p>
-                            </div>
-                            <div className='w-[90%] h-[22%] mb-4 mr-3 ml-3 flex'>
-                                <img src={clock} className='h-[100%]'></img>
-                                <p className='mt-1.5 ml-1.5 text-sm text-gray-400'> Searching For Agents</p>
-                            </div>
-                            </div>
-                        </div>
+                        <RequestedOrdersCarousel />
                     </div>
                     
                     <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[3%] pt-[2%] text-white flex flex-wrap justify-center gap-4'>

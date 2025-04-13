@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState , useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import PickUpReqCard from '../../components/PickUpReqCard';
@@ -11,6 +11,20 @@ import s23 from '../../assets/s23.png'
 
 function AgentDashboard() {
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        const fetchPendingOrders = async () => {
+            try {
+                const res = await axios.get(`/api/agent/pendingRequests`);
+                if(res.status === 200){
+                    console.log(res.data);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+    })
+
     let user = {
         name: "John Doe",
         profilePic: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
