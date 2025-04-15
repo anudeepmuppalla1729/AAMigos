@@ -17,7 +17,9 @@ import CustomerOrder from './Pages/customer/CustomerOrder.jsx';
 import CustomerProfile from './Pages/customer/CustomerProfile.jsx';
 import CustomerProfileEdit from './Pages/customer/CustomerProfileEdit.jsx';
 import NewOrder from './Pages/customer/NewOrder.jsx';
+import CustomerSupport from './Pages/customer/CustomerSupport.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
+import AgentSupport from './Pages/agent/AgentSupport.jsx';
 import ProtectedRoute from './components/ProtectedRoute';
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:3000";
@@ -41,11 +43,13 @@ function App() {
             <Route path={"/agent/profile"} element={<ProtectedRoute allowedRole="agent"><AgentProfilePage /></ProtectedRoute>}/>
             <Route path={"/agent/orders"} element={<ProtectedRoute allowedRole="agent"><AgentOrders /></ProtectedRoute>}/>
             <Route path={"/agent/editProfile"} element={<ProtectedRoute allowedRole="agent"><AgentProfileEdit /></ProtectedRoute>}/>
+            <Route path={"/agent/support"} element={<ProtectedRoute allowedRole="agent"><AgentSupport /></ProtectedRoute>}/>
             <Route path={"/customer/dashboard"} element={<ProtectedRoute allowedRole="customer"><CustomerDashboard /></ProtectedRoute>}/>
             <Route path={"/customer/orders"} element={<ProtectedRoute allowedRole="customer"><CustomerOrder /></ProtectedRoute>}/>
             <Route path={"/customer/profile"} element={<ProtectedRoute allowedRole="customer"><CustomerProfile /></ProtectedRoute>}/>
             <Route path={"/customer/editProfile"} element={<ProtectedRoute allowedRole="customer"><CustomerProfileEdit /></ProtectedRoute>}/>
             <Route path={"/customer/newOrder"} element={<ProtectedRoute allowedRole="customer"><NewOrder /></ProtectedRoute>}/>
+            <Route path={"/customer/support"} element={<ProtectedRoute allowedRole="customer"><CustomerSupport /></ProtectedRoute>}/>
           </Routes>
         </BrowserRouter>
       </AuthProvider>

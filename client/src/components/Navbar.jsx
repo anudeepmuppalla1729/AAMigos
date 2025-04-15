@@ -24,7 +24,7 @@ function AgentNavbar() {
   }, [])
   return (
         <div className="w-full md:w-auto h-[10%] bg-[#171925] flex justify-between pr-10">
-          <img src={Logo} alt="AAmigo's Logo" className={"h-[10vh] ml-[10vh]"} />
+          <img src={Logo} alt="AAmigo's Logo" className={"h-[10vh] ml-[8vh]"} />
           <input type="text" placeholder={"Search..."} className={"mr-[3vh] mt-[2vh] mb-[3vh] ml-[15vh] w-[50vh]" +
               " placeholder-gray-500 rounded-2xl border border-gray-500 w-[45vw] h-[4vh] p-4"} />
             <div className='flex '>

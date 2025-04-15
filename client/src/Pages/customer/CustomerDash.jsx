@@ -1,4 +1,4 @@
-import React, {useState , useEffect} from 'react';
+import React, {useState , useEffect , useRef} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import arrow from '../../assets/arrow.png'
@@ -15,17 +15,45 @@ import RequestedOrdersCarousel from '../../components/RequestedOrdersCarousel'
 
 function CustomerDashboard() {
     const navigate = useNavigate();
+    const [pendingOrders, setPendingOrders] = useState([]);
+    const [activeOrders, setActiveOrders] = useState([]);
+
+    const pendingOrdersFetch = useRef(false)
+    const activeOrdersFetch = useRef(false)
 
     useEffect(()=>{
+        if (activeOrdersFetch.current) return;
+        activeOrdersFetch.current = true;
         const fetchActiveOrders = async () => {
             try {
                 const res = await axios.get('/api/customer/activeOrders');
-                console.log(res.data);
+                setActiveOrders(res.data);
             } catch (error) {
                 console.error("Error fetching active orders:", error);
             }
         } 
+        fetchActiveOrders();
     },[]);
+    useEffect(()=>{
+        if (pendingOrdersFetch.current) return;
+        pendingOrdersFetch.current = true;
+        const fetchPendingOrders = async () => {
+            try {
+                const res = await axios.get(`/api/customer/pendingOrders`);
+                if(res.status === 200){
+                    setPendingOrders(res.data);
+                } 
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+        fetchPendingOrders();
+    } ,[])
+    useEffect(() => {
+    console.log("Updated pendingOrders:", pendingOrders);
+}, [pendingOrders]);
+
     let user = {
         name: "John Doe",
         profilePic: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
@@ -47,14 +75,26 @@ function CustomerDashboard() {
             <div className='bg-[#0d1117] h-[88%] w-[20%] flex justify-start items-center pl-11 pt-[2%]'><CustomerSidebar/></div>
             <div className='h-[90%] w-[72vw] flex items-center pl-8'>
                 <div className='bg-[#0d1117] h-[85%] w-[100%] flex flex-wrap gap-[1.5vw] '>
-                    <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[3%] pt-[2%] text-white flex flex-wrap justify-center gap-[15px]'>
-                        <h2 className='pb-2'>Active Orders</h2>
-                        <OngoingAssignments device = {device} request = {request}/>
-                        <OngoingAssignments device = {device} request = {request}/>
+                    <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[2%] text-white flex flex-col'>
+                        <h2 className='sticky top-0 pb-6 ml-39'>Active Orders</h2>
+                        <div className='flex flex-wrap justify-center gap-[15px] overflow-y-scroll scrollbar-hide'>
+                            <style jsx>{`
+                                .scrollbar-hide::-webkit-scrollbar {
+                                    display: none;
+                                }
+                                .scrollbar-hide {
+                                    -ms-overflow-style: none;
+                                    scrollbar-width: none;
+                                }
+                            `}</style>
+                            {activeOrders.map((order) => (
+                                <OngoingAssignments order={order} key={order._id}/>
+                            ))}
+                        </div>
                     </div>
                     <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[3%] pt-[2%] px-[2.5s%] text-white flex flex-wrap justify-center gap-[15px]'>
                         <h2 className='pb-2'>Requested Orders</h2>
-                        <RequestedOrdersCarousel />
+                        {pendingOrders.length > 0 ? <RequestedOrdersCarousel orders={pendingOrders}/> : "Loading Orders .."}
                     </div>
                     
                     <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[3%] pt-[2%] text-white flex flex-wrap justify-center gap-4'>

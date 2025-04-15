@@ -11,7 +11,7 @@ export const getActiveOrders = async(req,res) =>{
                     path: "device",
                     populate: {
                     path: "model",
-                    select: "name",
+                    select: "name img",
                     },
                 })
         if(!activeOrders){
@@ -29,6 +29,12 @@ export const getPendingOrders = async(req,res) =>{
         const pendingOrders = await Request.find({
             user:userId,
             status:"Pending", 
+        }).populate({
+            path: "device",
+            populate: {
+            path: "model",
+            select: "name img",
+            },
         })
         if(!pendingOrders){
             return res.status(200).json({message: "No pending orders found"}); 
@@ -65,6 +71,13 @@ export const allOrders = async(req,res) =>{
     try{
         const userId = req.userDetails.id;
         const allOrders = await Request.find({user:userId})
+        .populate({
+            path: "device",
+            populate: {
+            path: "model",
+            select: "name img",
+            },
+        }) 
         if(!allOrders){
             return res.status(200).json({message: "No orders found"});
         }

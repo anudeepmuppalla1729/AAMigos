@@ -54,7 +54,7 @@ export const getOngoingRequests = async (req,res) =>{
                     path: "device",
                     populate: {
                     path: "model",
-                    select: "name",
+                    select: "name img",
                     },
                 })  
         if(!ongoingRequests){
@@ -68,6 +68,7 @@ export const getOngoingRequests = async (req,res) =>{
 
 export const getAllAssignedRequests = async (req,res) =>{
     try{
+        console.log("getAllAssignedRequests");
         let agentId = req.agent.id;
         const assignedRequests = await Request.find({assignedAgent: agentId})
         .populate({
@@ -76,10 +77,9 @@ export const getAllAssignedRequests = async (req,res) =>{
             path: "model",
             select: "name img",
             },
-        })
-        .populate("selectedServiceCenter", "name city address contactNumber")
-        .populate("user", "name profilePicture phone");
+        });
 
+        console.log(assignedRequests);
         if(!assignedRequests){
             return res.status(200).json({message:"No assigned requests found"});
         }
