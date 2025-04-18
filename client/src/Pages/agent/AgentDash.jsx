@@ -88,7 +88,7 @@ function AgentDashboard() {
                     </div>
                     <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[2%] text-white flex flex-col'>
                         <h2 className='sticky top-0 pb-6 ml-31 font-semibold'>Ongoing Assignments</h2>
-                        <div className='flex flex-wrap justify-center gap-[15px] overflow-y-scroll scrollbar-hide'>
+                        <div className='flex flex-wrap justify-center gap-[15px] h-full overflow-y-scroll scrollbar-hide'>
                             <style jsx>{`
                                 .scrollbar-hide::-webkit-scrollbar {
                                     display: none;
@@ -98,9 +98,9 @@ function AgentDashboard() {
                                     scrollbar-width: none;
                                 }
                             `}</style>
-                            {activeOrders.map((order) => (
+                            {activeOrders.length>0 ? activeOrders.map((order) => (
                                 <OngoingAssignments order={order}/>
-                            ))}
+                            )) : <div className='w-full flex justify-center mt-13'><p className='mb-3'>No Ongoing Assignments</p></div>}
                         </div>
                     </div>
                     <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] text-white flex flex-col justify-between'>

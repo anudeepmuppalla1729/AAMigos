@@ -76,8 +76,8 @@ function CustomerDashboard() {
             <div className='h-[90%] w-[72vw] flex items-center pl-8'>
                 <div className='bg-[#0d1117] h-[85%] w-[100%] flex flex-wrap gap-[1.5vw] '>
                     <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[2%] text-white flex flex-col'>
-                        <h2 className='sticky top-0 pb-6 ml-39'>Active Orders</h2>
-                        <div className='flex flex-wrap justify-center gap-[15px] overflow-y-scroll scrollbar-hide'>
+                        <h2 className='sticky top-0 pb-6 ml-39 font-semibold'>Active Orders</h2>
+                        <div className='h-full flex flex-wrap justify-center gap-[15px] overflow-y-scroll scrollbar-hide'>
                             <style jsx>{`
                                 .scrollbar-hide::-webkit-scrollbar {
                                     display: none;
@@ -87,18 +87,18 @@ function CustomerDashboard() {
                                     scrollbar-width: none;
                                 }
                             `}</style>
-                            {activeOrders.map((order) => (
+                            {activeOrders.length > 0 ? activeOrders.map((order) => (
                                 <OngoingAssignments order={order} key={order._id}/>
-                            ))}
+                            )) : <div className='w-full flex justify-center'><p className='mb-3'>No Active Orders</p></div> }
                         </div>
                     </div>
                     <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[3%] pt-[2%] px-[2.5s%] text-white flex flex-wrap justify-center gap-[15px]'>
-                        <h2 className='pb-2'>Requested Orders</h2>
-                        {pendingOrders.length > 0 ? <RequestedOrdersCarousel orders={pendingOrders}/> : "Loading Orders .."}
+                        <h2 className='pb-2 font-semibold'>Requested Orders</h2>
+                        {pendingOrders.length > 0 ? (<RequestedOrdersCarousel orders={pendingOrders}/> ): <div className='w-full flex justify-center'><p className='mb-3'>No Pending Orders</p></div>}
                     </div>
                     
                     <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[3%] pt-[2%] text-white flex flex-wrap justify-center gap-4'>
-                        <h2>Payment Summary</h2>
+                        <h2 className='font-semibold'>Payment Summary</h2>
                         <div className='bg-[#22272d] w-[95%] h-[75%] h-[50%] rounded-[15px] flex flex-wrap justify-center items-start hover:scale-102 shadow-[0px_0px_6px_rgba(0,0,0,0.3)] hover:shadow-sm  hover:shadow-[#ffffff]/3 transition-all duration-300 ease-in-out'>
                             <div className='bg-[#2d3238] w-[85%] h-[50%] mt-5 rounded-[15px] p-2.5 pt-3.5 pl-3.5 pr-7 flex justify-between'>
                                 <div>
@@ -110,11 +110,11 @@ function CustomerDashboard() {
                                     <p className='text-xl ' >16,000</p>
                                 </div>
                             </div>
-                            <button className='w-20 h-6 bg-[#ff4e00] rounded-full text-sm hover:bg-[#ff5722] '>Pay</button>
+                            <button className='w-20 h-6 bg-[#ff4e00] rounded-full text-sm hover:bg-[#ff5722]'>Pay</button>
                         </div>
                     </div>
                     <div className='bg-[#161b22] w-[48.5%] h-[50%]  p-[3%] pt-[2%] rounded-[15px] text-white flex flex-col items-center'>
-                        <h2>Customer Support</h2>
+                        <h2 className='font-semibold'>Customer Support</h2>
                         <div className='w-[100%] h-[100%] flex justify-center items-center mt-3 hover:scale-110 hover:shadow-sm  hover:shadow-[#ffffff]/3 transition-all duration-300 ease-in-out'><img src={personsupport}></img></div>
                     </div>
                 </div>

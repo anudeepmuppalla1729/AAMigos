@@ -30,7 +30,7 @@ function AgentProfilePage() {
               <img src={agent.profilePic} alt="profile pic" className={"size-20 ml-3"}/>
             </div>
           <div className={"flex justify-end w-full pr-9 translate-y-3 mr-48"}>
-            <button className="cursor-pointer" onClick={()=>{navigate("/customer/editProfile")}}>
+            <button className="cursor-pointer" onClick={()=>{navigate("/agent/editProfile")}}>
                 <div className="flex">
                 <img className ="w-5 h-4 mt-1" src="https://img.icons8.com/?size=100&id=111452&format=png&color=FFFFFF"></img>Edit Details
                 </div>
