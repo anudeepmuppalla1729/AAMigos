@@ -172,3 +172,67 @@ export const cancelOrder= async (req,res) =>{
         res.status(500).json({message: "Internal server error"});
     }
 }
+
+export const getPackages = async(req,res) =>{
+    try{
+       const requestId = req.params.reqId;
+       const request = await Request.findById(requestId)
+      .populate({
+        path: "device",
+        populate: {
+          path: "model",
+          select: "name img"
+        }
+      });
+       if(!request){
+        return res.status(404).json({message: "Request not found"});
+    }
+    const { affordable, goodToHave, niceToHave, device } = request;
+
+    const formatPackage = (pkgMap, label) => {
+      const entries = Object.fromEntries(pkgMap);
+      const services = Object.entries(entries).map(([service, price]) => ({
+        service,
+        price,
+      }));
+      const totalPrice = services.reduce((sum, item) => sum + item.price, 0);
+
+      return {
+        type: label,
+        services,
+        totalPrice,
+      };
+    };
+
+    const packages = [
+      formatPackage(affordable, "Affordable"),
+      formatPackage(goodToHave, "Good to Have"),
+      formatPackage(niceToHave, "Nice to Have"),
+    ];
+
+    return res.status(200).json({
+      device: {
+        modelName: device.model?.name,
+        modelImage: device.model?.img,
+      },
+      packages,
+    });
+    } 
+    catch(error){
+        res.status(500).json({message: "Internal server error"}); 
+    }
+}
+
+ export const updatePackage=async (req,res) =>{
+    try{
+        const requestId = req.params.reqId;
+        const { userPackage}= req.body;
+        const request = await Request.findById(requestId); 
+        request.userPackage = userPackage;
+        await request.save();
+        return res.status(200).json({message: "Package updated successfully"});
+    } 
+    catch(error){
+        res.status(500).json({message: "Internal server error"}); 
+    }
+}

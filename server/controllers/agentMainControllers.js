@@ -178,3 +178,37 @@ export const updateStatus = async (req,res) =>{
         res.status(500).json({message:error.message});
     }
 }
+export const packages = async (req,res) =>{
+    try{
+        const {affordable,goodToHave,niceToHave}= req.body;
+        const {requestId} = req.params;
+        const request = await Request.findById(requestId);
+        request.affordable = affordable;
+        request.goodToHave = goodToHave;
+        request.niceToHave = niceToHave
+        await request.save();
+        res.status(200).json({message:"Packages updated successfully"});
+    } 
+    catch(error){
+        res.status(500).json({message:error.message});
+    }
+}
+
+export const getPackage = async (req,res) =>{
+    try{
+        const {requestId} = req.params;
+        const {userPackage}=req.body;
+        const request = await Request.findById(requestId)  
+        .populate({
+            path: "device",
+            populate: {
+            path: "model",
+            select: "name img",
+            },
+        })
+        res.status(200).json(request);
+    }
+    catch(error){
+        res.status(500).json({message:error.message});
+    }
+}

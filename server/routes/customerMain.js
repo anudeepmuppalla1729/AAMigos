@@ -1,6 +1,6 @@
 import express from "express";
 import { verifyToken ,verifyUser } from "../middlewares/authMiddleware.js";
-import { allOrders, getActiveOrders, getPendingOrders, getDetails, latestUnpaidOrder, updateDetails,trackOrder, cancelOrder } from "../controllers/customerMain.js";
+import { allOrders, getActiveOrders, getPendingOrders, getDetails, latestUnpaidOrder, updateDetails,trackOrder, cancelOrder, getPackages, updatePackage } from "../controllers/customerMain.js";
 const router = express.Router();
 
 router.get("/activeOrders" , verifyToken , verifyUser , getActiveOrders);
@@ -19,4 +19,7 @@ router.get("/trackOrder/:reqId",verifyToken, verifyUser,trackOrder);
 
 router.post("/cancelOrder/:reqId",verifyToken, verifyUser,cancelOrder)
 
+router.get("/getPackages/:reqID",verifyToken, verifyUser,getPackages)
+
+router.post("/updatePackages/:reqID",verifyToken, verifyUser,updatePackage)
 export default router;
