@@ -6,6 +6,8 @@ const RequestedOrdersCarousel = ({ orders }) => {
     const [animate, setAnimate] = useState(false);
 
     useEffect(() => {
+        if (orders.length <= 1) return;
+        
         const interval = setInterval(() => {
             setAnimate(true);
             setTimeout(() => {
@@ -14,7 +16,7 @@ const RequestedOrdersCarousel = ({ orders }) => {
                 );
                 setAnimate(false);
             }, 200); // Duration of fade out
-        }, 3000);
+        }, 2700);
 
         return () => clearInterval(interval);
     }, [orders]);

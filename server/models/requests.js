@@ -9,6 +9,7 @@ const requestSchema = new mongoose.Schema({
     enum: ["Pending", "Approved", "PickedUp", "FreeApproval", "InRepair", "Delivering", "Paid", "Completed", "Cancelled"],
     default: "Pending" 
   },
+  FreeService: {type :Boolean ,default: false },
   assignedAgent: { type: mongoose.Schema.Types.ObjectId, ref: "Agent" },
   selectedServiceCenter: { type: mongoose.Schema.Types.ObjectId, ref: "ServiceCenter" },
   affordable: { type: Map, of: Number},

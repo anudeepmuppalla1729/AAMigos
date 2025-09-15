@@ -100,7 +100,7 @@ function AgentDashboard() {
                             `}</style>
                             {activeOrders.length>0 ? activeOrders.map((order) => (
                                 <OngoingAssignments order={order}/>
-                            )) : <div className='w-full flex justify-center mt-13'><p className='mb-3'>No Ongoing Assignments</p></div>}
+                            )) : <div className='w-full flex justify-center mt-12.5'><p className='mb-4 ml-4'>No Ongoing Assignments</p></div>}
                         </div>
                     </div>
                     <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] text-white flex flex-col justify-between'>

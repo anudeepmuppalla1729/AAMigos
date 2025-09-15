@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 import { verifyAgent, verifyToken } from "../middlewares/authMiddleware.js";
-import { approveRequest, editDetails, getAllAssignedRequests, getDetails, getOngoingRequests, getPackage, getPendingRequests, packages, trackOrder, updateStatus } from "../controllers/agentMainControllers.js";
+import { approveRequest, editDetails, freeService, getAllAssignedRequests, getDetails, getOngoingRequests, getPackage, getPendingRequests, packages, trackOrder, updateStatus } from "../controllers/agentMainControllers.js";
 
 router.get("/pendingRequests" , verifyToken, verifyAgent, getPendingRequests);
 
@@ -22,4 +22,7 @@ router.post("/updateStatus/:reqId/update/:status",verifyToken, verifyAgent,updat
 router.post("/packages/:reqId",verifyToken, verifyAgent,packages);
 
 router.get("/getPackage/:reqId",verifyToken, verifyAgent,getPackage);
+
+router.post("/freeService/:reqId",verifyToken, verifyAgent , freeService);
+
 export default router;

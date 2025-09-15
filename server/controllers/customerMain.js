@@ -6,7 +6,7 @@ export const getActiveOrders = async(req,res) =>{
         const userId = req.userDetails.id;
         const activeOrders = await Request.find({
             user:userId, 
-            status:{ $nin: ["Pending", "Completed", "Cancelled"] },
+            status:{ $nin: ["Pending", "Completed", "Cancelled","Paid"] },
         }).populate({
                     path: "device",
                     populate: {
@@ -149,7 +149,11 @@ export const trackOrder= async (req,res) =>{
             select: "name img",
             },
         })
-        .populate("agent", "name profilePicture phone");
+        .populate("assignedAgent", "name profilePicture phone");
+        if(!request){
+            return res.status(404).json({message: "Request not found"}); 
+        }
+        res.status(200).json(request);
     } 
     catch(error){
         res.status(500).json({message:error.message});
@@ -176,6 +180,7 @@ export const cancelOrder= async (req,res) =>{
 export const getPackages = async(req,res) =>{
     try{
        const requestId = req.params.reqId;
+       console.log(requestId);
        const request = await Request.findById(requestId)
       .populate({
         path: "device",
@@ -186,36 +191,29 @@ export const getPackages = async(req,res) =>{
       });
        if(!request){
         return res.status(404).json({message: "Request not found"});
-    }
+        }
     const { affordable, goodToHave, niceToHave, device } = request;
 
-    const formatPackage = (pkgMap, label) => {
+    const formatPackage = (pkgMap) => {
       const entries = Object.fromEntries(pkgMap);
-      const services = Object.entries(entries).map(([service, price]) => ({
-        service,
+      return Object.entries(entries).map(([label, price]) => ({
+        label,
         price,
       }));
-      const totalPrice = services.reduce((sum, item) => sum + item.price, 0);
-
-      return {
-        type: label,
-        services,
-        totalPrice,
-      };
     };
 
-    const packages = [
-      formatPackage(affordable, "Affordable"),
-      formatPackage(goodToHave, "Good to Have"),
-      formatPackage(niceToHave, "Nice to Have"),
-    ];
+    const packages = {
+      affordable: formatPackage(affordable),
+      goodToHave: formatPackage(goodToHave),
+      niceToHave: formatPackage(niceToHave)
+    };
 
     return res.status(200).json({
       device: {
-        modelName: device.model?.name,
-        modelImage: device.model?.img,
+        modelName: device.model.name,
+        modelImage: device.model.img,
       },
-      packages,
+      packages
     });
     } 
     catch(error){
@@ -225,14 +223,27 @@ export const getPackages = async(req,res) =>{
 
  export const updatePackage=async (req,res) =>{
     try{
-        const requestId = req.params.reqId;
-        const { userPackage}= req.body;
-        const request = await Request.findById(requestId); 
-        request.userPackage = userPackage;
+        const { reqId , name} = req.params;
+        const request = await Request.findById(reqId); 
+        request.userPackage = name;
         await request.save();
         return res.status(200).json({message: "Package updated successfully"});
     } 
     catch(error){
         res.status(500).json({message: "Internal server error"}); 
+    }
+}
+
+export const requestById = async(req,res) =>{
+    try{
+        const requestId = req.params.reqId;
+        const request = await Request.findById(requestId);
+        if(!request){
+            return res.status(404).json({message: "Request not found"});
+        }
+        return res.status(200).json(request); 
+    } 
+    catch(error){
+        res.status(500).json({message: "Internal server error"});
     }
 }

@@ -72,7 +72,7 @@ function CustomerDashboard() {
     return (
         <div className='bg-[#0d1117] h-screen w-screen flex flex-wrap'>
             <div className='w-[100vw] h-[10vh] bg-[#171925]'><Navbar/></div>
-            <div className='bg-[#0d1117] h-[88%] w-[20%] flex justify-start items-center pl-11 pt-[2%]'><CustomerSidebar/></div>
+            <div className='bg-[#0d1117] h-[88%] w-[21%] flex justify-start items-center pl-11 pt-[2%]'><CustomerSidebar/></div>
             <div className='h-[90%] w-[72vw] flex items-center pl-8'>
                 <div className='bg-[#0d1117] h-[85%] w-[100%] flex flex-wrap gap-[1.5vw] '>
                     <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[2%] text-white flex flex-col'>
@@ -89,7 +89,7 @@ function CustomerDashboard() {
                             `}</style>
                             {activeOrders.length > 0 ? activeOrders.map((order) => (
                                 <OngoingAssignments order={order} key={order._id}/>
-                            )) : <div className='w-full flex justify-center'><p className='mb-3'>No Active Orders</p></div> }
+                            )) : <div className='w-full flex justify-center '><p className='mb-3 mt-14.5'>No Active Orders</p></div> }
                         </div>
                     </div>
                     <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[3%] pt-[2%] px-[2.5s%] text-white flex flex-wrap justify-center gap-[15px]'>

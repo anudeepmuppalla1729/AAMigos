@@ -1,7 +1,9 @@
 import React from "react";
 import completed from "../assets/completed icon.png";
 import clock from "../assets/clock.png";
+import { useNavigate } from "react-router-dom";
 function CustomerOrderCard(props){
+  const navigate = useNavigate();
   console.log(props.order);
   return(
       <div className="bg-[#ffffff]/5 w-[90%] h-[20%] flex items-center justify-between px-10 py-5 rounded-[15px] text-white hover:scale-102 hover:shadow-lg hover:shadow-[#ffffff]/1 transition-all duration-300 ease-in-out">
@@ -19,12 +21,24 @@ function CustomerOrderCard(props){
         {/* Right Section: Status and Arrow Button */}
         <div className="flex items-center">
           <div className="flex items-center">
-            {props.order.status === ("Approved" || "PickedUp" || "InRepair"|| "Delivering") && (
-                <div className="flex gap-x-7  ">
-                  <button className="bg-[#FF4E00] pl-5 pr-5 pb-0.5 font-light rounded-[15px] text-[15px]">Track</button>
-                  <button className="bg-[#FF4E00] px-6 pb-0.5 font-light rounded-[15px] text-[15px]">Pay</button>
-                </div>
-            )}
+            {console.log(props.order.status)}
+            {["Approved", "FreeApproval", "PickedUp", "InRepair", "Delivering"].includes(props.order.status) && (
+  <div className="flex gap-x-7">
+    <button
+      className="bg-[#FF4E00] pl-5 pr-5 pb-0.5 font-light rounded-[15px] text-[15px]"
+      onClick={() => navigate(`/customer/track/${props.order._id}`)}
+    >
+      Track
+    </button>
+    <button
+      className="bg-[#FF4E00] px-6 pb-0.5 font-light rounded-[15px] text-[15px]"
+      onClick={() => navigate("/customer/payment")}
+    >
+      Pay
+    </button>
+  </div>
+)}
+
 
             {props.order.status === "Paid" && (
                 <div className="flex gap-x-10">

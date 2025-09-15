@@ -53,9 +53,9 @@ function AgentOrders(){
                     scrollbar-width: none;
                   }
                 `}</style>
-                {allOrders.map((order)=>{
+                {allOrders.length > 0 ? allOrders.map((order)=>{
                   return <OrderCard order={order} key={order._id}/>
-                })}
+                }) : <div className='w-full flex justify-center'><p className='mb-3 mt-39 text-lg text-white'>No Orders Found</p></div>}
               </div>
             </div>
             </div>

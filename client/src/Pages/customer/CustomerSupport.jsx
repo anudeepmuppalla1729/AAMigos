@@ -27,11 +27,11 @@ function CustomerSupport() {
     return (
         <div className='bg-[#0d1117] h-screen w-screen flex flex-wrap'>
             <div className='w-[100vw] h-[10vh] bg-[#171925]'><Navbar/></div>
-            <div className='bg-[#0d1117] h-[88%] w-[20%] flex justify-start items-center pl-11 pt-[2%]'><CustomerSidebar/></div>
+            <div className='bg-[#0d1117] h-[88%] w-[21%] flex justify-start items-center pl-11 pt-[2%]'><CustomerSidebar/></div>
             <div className='h-[90%] w-[72vw] flex items-center pl-8'>
                 <div className='bg-[#0d1117] h-[85%] w-[100%] flex flex-wrap gap-[1.5vw]'>
                     {/* Support Ticket Form */}
-                    <div className='bg-[#161b22] w-[48.5%] h-[100%] rounded-[15px] p-[3%] text-white'>
+                    <div className='bg-[#161b22] w-[48.5%] h-[100%] rounded-[15px] p-[3%] text-white overflow-y-auto scrollbar-hide'>
                         <h2 className='text-xl mb-6'>Create Support Ticket</h2>
                         <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
                             <div>

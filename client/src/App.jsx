@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState , useEffect} from 'react';
 import ReactDOM from 'react-dom/client'
 import './App.css'
 import {BrowserRouter, Navigate, Route, Router, Routes} from "react-router-dom";
@@ -21,13 +21,22 @@ import CustomerSupport from './Pages/customer/CustomerSupport.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 import AgentSupport from './Pages/agent/AgentSupport.jsx';
 import ProtectedRoute from './components/ProtectedRoute';
+import CustomerTrack from './Pages/customer/CustomerTrack.jsx';
+import AgentTrack from './Pages/agent/AgentTrack.jsx';
+import PaymentPage from './Pages/customer/PaymentPage.jsx';
+import PackageUpdation from './Pages/agent/PackageUpdation.jsx';
+import PackageView from './Pages/agent/PackageView.jsx';
+import WaitingForUserResponse from './Pages/agent/waitingForUserResponse.jsx';
+import PackageSelection from './Pages/customer/PackageSelection.jsx';
 import axios from "axios";
+import { jwtDecode } from 'jwt-decode';
 axios.defaults.baseURL = "http://localhost:3000";
 
 const token = localStorage.getItem('token');
 if (token) {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 }
+
 
 function App() {
   return (
@@ -44,12 +53,21 @@ function App() {
             <Route path={"/agent/orders"} element={<ProtectedRoute allowedRole="agent"><AgentOrders /></ProtectedRoute>}/>
             <Route path={"/agent/editProfile"} element={<ProtectedRoute allowedRole="agent"><AgentProfileEdit /></ProtectedRoute>}/>
             <Route path={"/agent/support"} element={<ProtectedRoute allowedRole="agent"><AgentSupport /></ProtectedRoute>}/>
+            <Route path={"/agent/track/:reqId"} element={<ProtectedRoute allowedRole="agent"><AgentTrack /></ProtectedRoute>}/>
+            <Route path={"/agent/track/:reqId/:nextCount"} element={<ProtectedRoute allowedRole="agent"><AgentTrack /></ProtectedRoute>}/>
+            <Route path={"/agent/packageUpdation/:reqId/:status"} element={<ProtectedRoute allowedRole="agent"><PackageUpdation /></ProtectedRoute>}/>
+            <Route path={"/agent/packageView"} element={<ProtectedRoute allowedRole="agent"><PackageView /></ProtectedRoute>}/>
+            <Route path={"/agent/waitingForUserResponse"} element={<ProtectedRoute allowedRole="agent"><WaitingForUserResponse /></ProtectedRoute>}/>
             <Route path={"/customer/dashboard"} element={<ProtectedRoute allowedRole="customer"><CustomerDashboard /></ProtectedRoute>}/>
             <Route path={"/customer/orders"} element={<ProtectedRoute allowedRole="customer"><CustomerOrder /></ProtectedRoute>}/>
             <Route path={"/customer/profile"} element={<ProtectedRoute allowedRole="customer"><CustomerProfile /></ProtectedRoute>}/>
             <Route path={"/customer/editProfile"} element={<ProtectedRoute allowedRole="customer"><CustomerProfileEdit /></ProtectedRoute>}/>
             <Route path={"/customer/newOrder"} element={<ProtectedRoute allowedRole="customer"><NewOrder /></ProtectedRoute>}/>
             <Route path={"/customer/support"} element={<ProtectedRoute allowedRole="customer"><CustomerSupport /></ProtectedRoute>}/>
+            <Route path={"/customer/track/:reqId"} element={<ProtectedRoute allowedRole="customer"><CustomerTrack /></ProtectedRoute>}/>
+            <Route path={"/customer/track/:reqId/:Package"} element={<ProtectedRoute allowedRole="customer"><CustomerTrack /></ProtectedRoute>}/>
+            <Route path={"/customer/payment"} element={<ProtectedRoute allowedRole="customer"><PaymentPage /></ProtectedRoute>}/>
+            <Route path={"/customer/packageSelection/:reqId"} element={<ProtectedRoute allowedRole="customer"><PackageSelection /></ProtectedRoute>}/>
           </Routes>
         </BrowserRouter>
       </AuthProvider>

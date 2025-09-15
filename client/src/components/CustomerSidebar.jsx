@@ -19,12 +19,12 @@ function CustomerSidebar() {
           style={gradientStyle}
       >
         <div className={"flex flex-col justify-evenly h-full"}>
-          <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/customer/dashboard")}}>
-            <div className="text-xl">
-              <span><img src={dashboard} alt="dashboard" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
+          <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/agent/dashboard")}}>
+              <div className="text-xl">
+                <span><img src={dashboard} alt="dashboard" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
+              </div>
+              <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap" >Dashboard</span>
             </div>
-            <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap" >Dashboard</span>
-          </div>
 
           <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/customer/orders")}}>
             <div className="text-xl">

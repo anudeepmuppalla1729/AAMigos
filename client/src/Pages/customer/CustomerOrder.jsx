@@ -3,11 +3,13 @@ import CustomerOrderCard from '../../components/CustomerOrderCard.jsx';
 import AgentNavbar from '../../components/Navbar';
 import Samsung from '../../assets/s23.png'
 import CustomerSidebar from "../../components/CustomerSidebar.jsx";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 
 function CustomerOrder(){
   const [allOrders , setAllOrders] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(()=>{
     const fetchAllOrders = async()=>{
@@ -43,8 +45,8 @@ function CustomerOrder(){
   return(
       <div className='bg-[#0d1117] h-screen w-screen flex flex-wrap'>
         <div className='w-[100vw] h-[10%] bg-[#171925]'><AgentNavbar/></div>
-        <div className='bg-[#0d1117] h-[88%] w-[20%] flex justify-start items-center pl-11 pt-[2%]'><CustomerSidebar/></div>
-        <div className='h-[90%] w-[80vw] flex items-center pl-8 '>
+        <div className='bg-[#0d1117] h-[88%] w-[21%] flex justify-start items-center pl-11 pt-[2%]'><CustomerSidebar/></div>
+        <div className='h-[90%] w-[79%] flex items-center pl-8 '>
           <div className='bg-[#0d1117] h-[85%] w-[90%]'>
             <div className='bg-[#161b22] w-[100%] h-[100%] flex flex-col items-center rounded-[15px] py-5'>
               <div className='sticky top-0 w-full flex justify-center pb-5 z-10 rounded-[15px]'>
@@ -60,9 +62,9 @@ function CustomerOrder(){
                     scrollbar-width: none;
                   }
                 `}</style>
-                {allOrders.map((order)=>{
+                {allOrders.length > 0 ? allOrders.map((order)=>{
                   return <CustomerOrderCard order={order} key={order._id}/>
-                })}
+                }) : <div className='w-full flex justify-center'><p className='mb-3 mt-39 text-lg text-white'>No Orders Found</p></div>}
               </div>
             </div>
           </div>

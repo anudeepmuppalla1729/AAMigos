@@ -36,7 +36,7 @@ function NewOrder() {
     const fetchCompanies = async () => {
       try {
         console.log(activeCategory);
-        const res = await axios.get(`/api/request/companies/${activeCategory}` );
+        const res = await axios.get(`/api/request/companies/${activeCategory} `);
 
         setCompanyOptions(res.data);
       } catch (error) {
@@ -102,7 +102,7 @@ function NewOrder() {
         <div className='w-[100vw] h-[10%] bg-[#171925]'>
           <AgentNavbar />
         </div>
-        <div className='bg-[#0d1117] h-[88%] w-[20%] flex justify-start items-center pl-11 pt-[1%]'>
+        <div className='bg-[#0d1117] h-[88%] w-[21%] flex justify-start items-center pl-11 pt-[1%]'>
           <CustomerSidebar />
         </div>
         <div className="w-[75%] mt-[6vh] bg-[#ffffff]/0.9 h-[75%] flex flex-col items-center justify-center gap-y-1 rounded-2xl ml-1">

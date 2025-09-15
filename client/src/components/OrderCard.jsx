@@ -1,7 +1,10 @@
 import arrow from '../assets/arrow.png'
+import React from "react";
+import { useNavigate } from "react-router-dom";
 function Order(props){
+    const navigate = useNavigate();
     return(
-        <div className="bg-[#ffffff]/5 w-[90%] h-[20%] p-5 flex items-center justify-between px-8 rounded-[15px] text-white hover:scale-103 shadow-[0px_0px_6px_rgba(0,0,0,0.3)] hover:shadow-l  hover:shadow-[#ffffff]/5 transition-all duration-300 ease-in-out">
+        <div className="bg-[#ffffff]/5 w-[90%] h-[20%] p-5 flex items-center justify-between px-8 rounded-[15px] text-white hover:scale-103 shadow-[0px_0px_6px_rgba(0,0,0,0.3)] hover:shadow-l  hover:shadow-[#ffffff]/5 transition-all duration-300 ease-in-out"  onClick={()=>navigate(`/agent/track/${props.order._id}`)} >
     {/* Left Section: Device Image and Name */}
     
     <div className="flex items-center gap-x-5 w-[40%]">
