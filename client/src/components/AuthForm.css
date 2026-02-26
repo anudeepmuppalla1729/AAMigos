@@ -1,23 +1,15 @@
 /* ===== Form Panel ===== */
+/* Remove explicit left/right margins since Flexbox now handles positioning */
 .form-panel {
   position: relative;
-  width: 55%;
+  /* Flex basis allows it to fluidly take up the remaining space */
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 36px 40px;
   z-index: 1;
-}
-
-/* Login: form is on the right */
-.form-panel.form-right {
-  margin-left: 45%;
-}
-
-/* Signup: form is on the left */
-.form-panel.form-left {
-  margin-left: 0;
 }
 
 .form-panel__logo {
@@ -147,10 +139,5 @@
   .form-panel {
     width: 100%;
     padding: 28px 24px;
-  }
-
-  .form-panel.form-right,
-  .form-panel.form-left {
-    margin-left: 0;
   }
 }

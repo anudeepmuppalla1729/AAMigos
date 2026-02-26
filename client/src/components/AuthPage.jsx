@@ -15,33 +15,22 @@ export default function AuthPage() {
 
   return (
     <div className="auth-page">
-      <div className="auth-card">
-        {/* Orange Panel — slides between left and right */}
+      <div className={`auth-card ${isLogin ? "is-login" : "is-signup"}`}>
+        {/* Orange Panel — swaps position via flex-direction driven by parent class */}
         <motion.div
           className="orange-panel"
           layout
           transition={panelTransition}
+          // The pop-out scale effect is maintained
           animate={{
-            left: isLogin ? "0%" : "55%",
-            borderRadius: isLogin ? "0px 80px 80px 0px" : "80px 0px 0px 80px",
             scale: [1, 1.03, 1],
-          }}
-          style={{
-            position: "absolute",
-            top: 0,
-            bottom: 0,
-            width: "45%",
           }}
         >
           <OrangeBubble />
         </motion.div>
 
-        {/* Form Panel — opposite side of the orange panel */}
-        <motion.div
-          className={`form-panel ${isLogin ? "form-right" : "form-left"}`}
-          layout
-          transition={panelTransition}
-        >
+        {/* Form Panel — automatically fills remaining space and swaps position */}
+        <motion.div className="form-panel" layout transition={panelTransition}>
           <AuthForm />
         </motion.div>
       </div>

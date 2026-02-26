@@ -1,9 +1,9 @@
 /* ===== Orange Panel ===== */
 .orange-panel {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 45%;
+  /* Remove absolute pos, use flex basis. */
+  flex-basis: 45%;
+  flex-shrink: 0;
+
   background: linear-gradient(145deg, #c05621 0%, #ea580c 100%);
   display: flex;
   flex-direction: column;
@@ -12,6 +12,18 @@
   padding: 40px 32px;
   z-index: 2;
   overflow: hidden;
+  /* Start with a default radius, overriden by JS or CSS */
+  border-radius: 0;
+}
+
+/* When in a login card, bubble is on the left -> right side is rounded */
+.is-login .orange-panel {
+  border-radius: 0 80px 80px 0;
+}
+
+/* When in a signup card, bubble is on the right -> left side is rounded */
+.is-signup .orange-panel {
+  border-radius: 80px 0 0 80px;
 }
 
 .orange-panel__content {
@@ -23,18 +35,6 @@
   height: 100%;
   position: relative;
   padding-bottom: 24px;
-}
-
-/* Login state: panel on left with right-side rounded corners */
-.orange-panel.panel-left {
-  left: 0;
-  border-radius: 0 80px 80px 0;
-}
-
-/* Signup state: panel on right with left-side rounded corners */
-.orange-panel.panel-right {
-  right: 0;
-  border-radius: 80px 0 0 80px;
 }
 
 .orange-panel__heading {
@@ -56,7 +56,7 @@
 
 .orange-panel__btn {
   padding: 9px 28px;
-  border: 2px solid rgba(0, 0, 0, 0.6);
+  border: 2px solid #000;
   border-radius: 10px;
   background: transparent;
   color: #fff;
@@ -104,16 +104,16 @@
 /* ===== Responsive ===== */
 @media (max-width: 700px) {
   .orange-panel {
-    position: relative;
+    flex-basis: auto;
     width: 100%;
     min-height: 220px;
+    padding: 24px 20px;
+    /* On mobile, ALWAYS round the bottom only */
     border-radius: 0 0 40px 40px !important;
   }
 
-  .orange-panel.panel-left,
-  .orange-panel.panel-right {
-    left: auto;
-    right: auto;
+  .is-login .orange-panel,
+  .is-signup .orange-panel {
     border-radius: 0 0 40px 40px !important;
   }
 }
