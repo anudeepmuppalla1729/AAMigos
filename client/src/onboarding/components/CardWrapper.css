@@ -1,0 +1,29 @@
+/* ===== Card Wrapper ===== */
+.onboarding-card {
+  width: 100%;
+  max-width: 480px;
+  background: #161b22;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
+  position: relative;
+  z-index: 1;
+}
+
+.onboarding-card__logo {
+  display: block;
+  margin: 0 auto 20px;
+  width: 110px;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 520px) {
+  .onboarding-card {
+    max-width: 100%;
+    border-radius: 16px;
+    padding: 24px 16px;
+  }
+}

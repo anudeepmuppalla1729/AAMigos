@@ -1,0 +1,119 @@
+/* ===== Orange Panel ===== */
+.orange-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 45%;
+  background: linear-gradient(145deg, #c05621 0%, #ea580c 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.orange-panel__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding-bottom: 24px;
+}
+
+/* Login state: panel on left with right-side rounded corners */
+.orange-panel.panel-left {
+  left: 0;
+  border-radius: 0 80px 80px 0;
+}
+
+/* Signup state: panel on right with left-side rounded corners */
+.orange-panel.panel-right {
+  right: 0;
+  border-radius: 80px 0 0 80px;
+}
+
+.orange-panel__heading {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.orange-panel__subtext {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.orange-panel__btn {
+  padding: 9px 28px;
+  border: 2px solid rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  background: transparent;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 28px;
+}
+
+.orange-panel__btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.orange-panel__btn:active {
+  transform: scale(0.97);
+}
+
+.orange-panel__switch {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  border: none;
+  background: none;
+  font-family: "Poppins", sans-serif;
+  white-space: nowrap;
+}
+
+.orange-panel__switch:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 700px) {
+  .orange-panel {
+    position: relative;
+    width: 100%;
+    min-height: 220px;
+    border-radius: 0 0 40px 40px !important;
+  }
+
+  .orange-panel.panel-left,
+  .orange-panel.panel-right {
+    left: auto;
+    right: auto;
+    border-radius: 0 0 40px 40px !important;
+  }
+}

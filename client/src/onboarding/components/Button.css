@@ -1,0 +1,58 @@
+/* ===== Button ===== */
+.ob-btn {
+  padding: 11px 24px;
+  border-radius: 12px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Primary — accent */
+.ob-btn--primary {
+  background: linear-gradient(135deg, #c45f2f 0%, #d4703f 100%);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(196, 95, 47, 0.25);
+}
+
+.ob-btn--primary:hover:not(:disabled) {
+  box-shadow: 0 8px 24px rgba(196, 95, 47, 0.35);
+}
+
+.ob-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Ghost — outlined */
+.ob-btn--ghost {
+  background: transparent;
+  color: #8b949e;
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.ob-btn--ghost:hover {
+  color: #e6edf3;
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Button row */
+.ob-btn-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.ob-btn-row--end {
+  justify-content: flex-end;
+}

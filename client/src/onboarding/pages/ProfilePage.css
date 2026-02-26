@@ -1,0 +1,164 @@
+/* ===== Profile Page ===== */
+.profile-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.profile-avatar__wrap {
+  position: relative;
+  width: 130px;
+  height: 130px;
+}
+
+.profile-avatar__circle {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: #0d1117;
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.profile-avatar__circle:hover {
+  box-shadow: 0 0 0 4px rgba(196, 95, 47, 0.18);
+  transform: scale(1.03);
+}
+
+.profile-avatar__circle.dragging {
+  box-shadow: 0 0 0 4px rgba(196, 95, 47, 0.35);
+  transform: scale(1.05);
+}
+
+.profile-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-avatar__placeholder {
+  color: #484f58;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Camera icon OUTSIDE the circle — bottom-right edge */
+.profile-avatar__camera {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 32px;
+  height: 32px;
+  background: #c45f2f;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border: 3px solid #161b22;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 3;
+}
+
+.profile-avatar__camera:hover {
+  transform: scale(1.1);
+}
+
+.profile-avatar__input {
+  display: none;
+}
+
+.profile-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ===== Crop Modal ===== */
+.crop-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.crop-modal {
+  background: #161b22;
+  border-radius: 20px;
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+}
+
+.crop-modal__title {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e6edf3;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.crop-modal__container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0d1117;
+}
+
+.crop-modal__slider-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.crop-modal__label {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #8b949e;
+  min-width: 40px;
+}
+
+.crop-modal__slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  outline: none;
+}
+
+.crop-modal__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #c45f2f;
+  cursor: pointer;
+}
+
+.crop-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}

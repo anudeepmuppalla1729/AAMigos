@@ -1,0 +1,6 @@
+/* ===== Verification Page ===== */
+.verification-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}

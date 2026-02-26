@@ -1,0 +1,73 @@
+/* ===== Input Field ===== */
+.ob-input {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ob-input__label {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #8b949e;
+  letter-spacing: 0.02em;
+}
+
+.ob-input__field {
+  width: 100%;
+  padding: 11px 14px;
+  background: #0d1117;
+  border: 1.5px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  color: #e6edf3;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  outline: none;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.ob-input__field::placeholder {
+  color: #484f58;
+}
+
+.ob-input__field:focus {
+  border-color: #c45f2f;
+  box-shadow:
+    inset 0 1px 4px rgba(0, 0, 0, 0.3),
+    0 0 0 3px rgba(196, 95, 47, 0.18);
+}
+
+.ob-input__field:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ob-input__field--error {
+  border-color: transparent;
+  box-shadow:
+    inset 0 1px 4px rgba(0, 0, 0, 0.3),
+    0 0 0 3px rgba(248, 81, 73, 0.15);
+}
+
+.ob-input__error {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7rem;
+  color: #f85149;
+  min-height: 16px;
+}
+
+.ob-input__valid-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #3fb950;
+  display: flex;
+  align-items: center;
+}
+
+.ob-input__field-wrap {
+  position: relative;
+}
