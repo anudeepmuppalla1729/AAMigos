@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import useAuthStore from "../store/authStore";
 import OrangeBubble from "./OrangeBubble";
@@ -13,6 +14,32 @@ export default function AuthPage() {
   const { mode } = useAuthStore();
   const isLogin = mode === "login";
 
+  const isFirstRender = useRef(true);
+  useEffect(() => {
+    isFirstRender.current = false;
+  }, []);
+
+  const loginFrames = [
+    "80px 0px 0px 80px",
+    "80px 80px 80px 80px",
+    "0px 80px 80px 0px",
+  ];
+  const signupFrames = [
+    "0px 80px 80px 0px",
+    "80px 80px 80px 80px",
+    "80px 0px 0px 80px",
+  ];
+  const loginEnd = "0px 80px 80px 0px";
+  const signupEnd = "80px 0px 0px 80px";
+
+  const borderRadiusAnim = isFirstRender.current
+    ? isLogin
+      ? loginEnd
+      : signupEnd
+    : isLogin
+      ? loginFrames
+      : signupFrames;
+
   return (
     <div className="auth-page">
       <div className={`auth-card ${isLogin ? "is-login" : "is-signup"}`}>
@@ -21,9 +48,10 @@ export default function AuthPage() {
           className="orange-panel"
           layout
           transition={panelTransition}
-          // The pop-out scale effect is maintained
+          // Scale and borderRadius keyframes play nicely together
           animate={{
             scale: [1, 1.03, 1],
+            borderRadius: borderRadiusAnim,
           }}
         >
           <OrangeBubble />
