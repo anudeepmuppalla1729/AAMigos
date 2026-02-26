@@ -16,16 +16,6 @@
   border-radius: 0;
 }
 
-/* When in a login card, bubble is on the left -> right side is rounded */
-.is-login .orange-panel {
-  border-radius: 0 80px 80px 0;
-}
-
-/* When in a signup card, bubble is on the right -> left side is rounded */
-.is-signup .orange-panel {
-  border-radius: 80px 0 0 80px;
-}
-
 .orange-panel__content {
   display: flex;
   flex-direction: column;

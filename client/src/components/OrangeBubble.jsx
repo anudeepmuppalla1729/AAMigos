@@ -30,7 +30,7 @@ export default function OrangeBubble() {
           }}
         >
           <h2 className="orange-panel__heading">
-            {isAgent ? "Hola, Agent" : "Hola, AAmigos"}
+            {isAgent ? "Hola, Agent" : "Hola, AAmigo"}
           </h2>
           <p className="orange-panel__subtext">
             {isLogin
