@@ -1,0 +1,301 @@
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #11151c;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    z-index: 50;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.sidebar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* --- Top Section --- */
+.topSection {
+    padding: 32px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logoContainer {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.logoImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.brandName {
+    color: white;
+    font-weight: 600;
+    font-size: 1.125rem;
+    white-space: nowrap;
+}
+
+/* --- Navigation Content --- */
+.navContent {
+    flex: 1;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* --- Nav Section --- */
+.section {
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionLabel {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 12px;
+    padding: 0 16px;
+    font-weight: 600;
+}
+
+.sectionLabelCollapsed {
+    text-align: center;
+    padding: 0;
+    font-size: 10px;
+}
+
+.sectionItems {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* --- Nav Item --- */
+.navItem {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    width: 100%;
+    font-size: 14px;
+    transition: background 200ms ease, color 200ms ease;
+}
+
+.navItem:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.navItem.active {
+    color: white;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.navItemCollapsed {
+    justify-content: center;
+    padding: 0;
+}
+
+.iconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: color 200ms ease;
+}
+
+.navItem.active .iconContainer {
+    color: #c45f2f;
+}
+
+.linkLabel {
+    white-space: nowrap;
+}
+
+/* --- Active Indicator --- */
+.activeIndicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background-color: #c45f2f;
+    border-radius: 0 3px 3px 0;
+}
+
+/* --- Tooltip --- */
+.tooltipContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.tooltip {
+    position: absolute;
+    left: calc(100% + 12px);
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 100;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- Bottom User Section --- */
+.userSection {
+    padding: 20px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.userSectionCollapsed {
+    padding: 20px 0;
+    justify-content: center;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+    font-weight: 600;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow: hidden;
+}
+
+.userName {
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.userRole {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    width: max-content;
+}
+
+/* --- Mobile Overlay --- */
+.mobileOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 40;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        width: 260px !important;
+        /* Force expand on mobile */
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .sidebar.mobileOpen {
+        transform: translateX(0);
+    }
+
+    /* Suppress Framer Motion width animations on mobile */
+    .sidebar {
+        width: 260px !important;
+    }
+}
+
+/* --- Toggle Rail Button --- */
+.toggleContainer {
+    padding: 0 16px;
+    margin-top: auto;
+    /* Push it and the user section to the bottom */
+    margin-bottom: 8px;
+    /* Give it space from the user section */
+    display: flex;
+    justify-content: center;
+}
+
+.toggleBtn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 16px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toggleBtn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.toggleBtnCollapsed {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+}

@@ -1,0 +1,63 @@
+/* ===== Auth Page Container ===== */
+.auth-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ===== Auth Card ===== */
+.auth-card {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  min-height: 480px; /* slightly taller to fit mobile stacked content nicely */
+  background: rgba(30, 41, 59, 0.85);
+  border-radius: 22px;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  /* Use flexbox to position children side-by-side */
+  display: flex;
+  overflow: hidden;
+}
+
+/* On desktop, login means orange bubble on left, form on right.
+   Since the DOM is [Bubble, Form], flex-direction: row gives us this. */
+.auth-card.is-login {
+  flex-direction: row;
+}
+
+/* On desktop, signup means orange bubble on right, form on left.
+   flex-direction: row-reverse swaps their order. */
+.auth-card.is-signup {
+  flex-direction: row-reverse;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 700px) {
+  .auth-page {
+    padding: 16px;
+  }
+
+  .auth-card {
+    max-width: 440px;
+    height: auto;
+    min-height: auto;
+  }
+
+  /* On mobile, stack vertically. Bubble stays on top for both modes, 
+     but we can just use normal column layout and let the content swap via Framer Motion. */
+  .auth-card.is-login {
+    flex-direction: column;
+  }
+
+  .auth-card.is-signup {
+    /* Actually we want the bubble on top always on mobile since it sets the greeting context.
+       If we use column-reverse the form goes on top.
+       Let's stick to column for both, Framer Motion will animate the internal contents nicely. */
+    flex-direction: column;
+  }
+}

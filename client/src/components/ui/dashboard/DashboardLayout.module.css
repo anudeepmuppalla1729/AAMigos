@@ -1,0 +1,30 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: #0e1117;
+    color: #ffffff;
+}
+
+.content {
+    flex: 1;
+    /* Margin-left is handled dynamically by style based on sidebar width in desktop */
+    display: flex;
+    flex-direction: column;
+    transition: margin-left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    min-width: 0;
+}
+
+
+
+.mainArea {
+    flex: 1;
+    padding: 32px;
+    overflow-y: auto;
+}
+
+/* On mobile, remove left margin for content */
+@media (max-width: 768px) {
+    .content {
+        margin-left: 0 !important;
+    }
+}

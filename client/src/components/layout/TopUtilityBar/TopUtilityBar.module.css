@@ -1,0 +1,155 @@
+.topUtilityBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 0 32px;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-sizing: border-box;
+}
+
+.leftSection {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    /* slight negative tracking */
+    margin: 0;
+    padding: 0;
+}
+
+.rightSection {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.searchWrapper {
+    display: flex;
+    align-items: center;
+}
+
+/* Background/Border handled mostly by base CSS, width animation handled by Framer Motion */
+.searchInput {
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    padding: 0 14px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.searchInput:focus {
+    box-shadow: 0 0 0 2px rgba(196, 95, 47, 0.35);
+    /* #c45f2f with opacity */
+}
+
+.primaryButton {
+    background: #c45f2f;
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    /* Hover/Tap logic partly handled by CSS fallback and Framer Motion */
+    transition: filter 200ms ease;
+}
+
+.primaryButton:hover {
+    filter: brightness(1.05);
+}
+
+.notificationIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: background 200ms ease;
+    color: #ffffff;
+    padding: 0;
+    outline: none;
+}
+
+.notificationIcon:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 6px;
+    height: 6px;
+    background: #ff4d4d;
+    border-radius: 50%;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+@media (max-width: 900px) {
+    .searchWrapper {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 18px;
+    }
+
+    .primaryButton {
+        display: none;
+    }
+
+    .searchWrapper {
+        display: none;
+    }
+
+    .notificationIcon {
+        display: none;
+    }
+
+    .topUtilityBar {
+        padding: 0 16px;
+    }
+}
