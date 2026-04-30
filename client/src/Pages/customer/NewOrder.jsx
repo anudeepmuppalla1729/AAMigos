@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import AgentNavbar from "../../components/Navbar.jsx";
 import CustomerSidebar from "../../components/CustomerSidebar.jsx";
 import LoadingPopup from "../../components/LoadingPopup.jsx";
 import axios from "axios";
 
 function NewOrder() {
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState('Smartphones');
   const [warrantyCover, setWarrantyCover] = useState("Yes");
   const [company, setCompany] = useState('');
@@ -80,17 +82,21 @@ function NewOrder() {
 
       if (response.status === 201) {
         console.log("Order submitted successfully!");
+        alert("Order submitted successfully!");
         setActiveCategory('Smartphones');
-  setWarrantyCover("Yes");
-  setCompany('');
-  setModel('');
-  setImei('');
-  setDescription('');
-  setInvoice(null);
-  setFileName('Upload Invoice');
+        setWarrantyCover("Yes");
+        setCompany('');
+        setModel('');
+        setImei('');
+        setDescription('');
+        setInvoice(null);
+        setFileName('Upload Invoice');
+        navigate('/customer/dashboard');
       }
     } catch (error) {
       console.error("Error submitting order:", error);
+      const errorMessage = error.response?.data?.error || error.response?.data?.message || "Failed to submit order";
+      alert("Error: " + errorMessage);
     } finally {
       setIsSubmitting(false);
     }

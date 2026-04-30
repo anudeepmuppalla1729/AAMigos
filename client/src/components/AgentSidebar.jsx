@@ -1,63 +1,57 @@
-import React from 'react';
-import dashboard from "../assets/dashboard.png";
-import orders from "../assets/orders.png";
-import settings from "../assets/settings.png";
-import support from "../assets/support.png";
-import OrdersForAgent from "../assets/pickups.png";
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { LayoutDashboard, PackageOpen, ListOrdered, Settings, Headset, ChevronLeft, ChevronRight } from 'lucide-react';
 
 function AgentSidebar() {
   const navigate = useNavigate();
-  const gradientStyle = {
-    background:
-        "linear-gradient(to bottom, rgba(255, 92, 141, 0.3), rgba(255, 177, 153, 0.3))",
-  };
+  const location = useLocation();
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const navItems = [
+    { name: 'Dashboard', path: '/agent/dashboard', icon: LayoutDashboard },
+    { name: 'PickUps', path: '/agent/pickup', icon: PackageOpen },
+    { name: 'Orders', path: '/agent/orders', icon: ListOrdered },
+    { name: 'Profile', path: '/agent/profile', icon: Settings },
+    { name: 'Support', path: '/agent/support', icon: Headset },
+  ];
 
   return (
+    <div className={`h-[65vh] ${isCollapsed ? 'w-20 px-2' : 'w-[90%] md:w-[80%] lg:w-[15vw] px-4'} rounded-2xl shadow-xl flex flex-col justify-evenly py-6 bg-[#171925]/80 backdrop-blur-xl border border-gray-800 transition-all duration-300 relative`}>
+      
+      {/* Toggle Button */}
+      <button 
+        onClick={() => setIsCollapsed(!isCollapsed)}
+        className="absolute -right-3 top-6 bg-gradient-to-r from-[#FF4E00] to-[#FF7A00] rounded-full p-1 border-2 border-[#171925] text-white hover:scale-110 transition-all z-10 shadow-lg hidden lg:block"
+      >
+        {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+      </button>
 
-        <div
-            className="h-[65vh] w-[90%] md:w-[80%] lg:w-[15vw] rounded-2xl shadow-lg flex flex-col justify-evenly px-4 md:px-6 lg:pl-7 py-4 md:py-6 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg hover:shadow-[#ffffff]/1 transition-all duration-300 ease-in-out items-center"
-            style={gradientStyle}
-        >
-          <div className={"flex flex-col justify-evenly h-full"}>
-            <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/agent/dashboard")}}>
-              <div className="text-xl">
-                <span><img src={dashboard} alt="dashboard" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
-              </div>
-              <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap" >Dashboard</span>
+      <div className="flex flex-col space-y-2 w-full">
+        {navItems.map((item) => {
+          const isActive = location.pathname.includes(item.path);
+          const Icon = item.icon;
+          return (
+            <div 
+              key={item.name}
+              onClick={() => navigate(item.path)}
+              className={`flex items-center cursor-pointer rounded-xl p-3 transition-all duration-300 group
+                ${isActive 
+                  ? 'bg-gradient-to-r from-orange-500/20 to-transparent border-l-4 border-orange-500' 
+                  : 'hover:bg-white/5 border-l-4 border-transparent'
+                }
+                ${isCollapsed ? 'justify-center border-l-0' : ''}
+              `}
+              title={isCollapsed ? item.name : ''}
+            >
+              <Icon className={`w-5 h-5 flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:text-orange-400 ${isActive ? 'text-orange-500' : 'text-gray-400'}`} />
+              <span className={`text-sm md:text-base font-medium whitespace-nowrap transition-all duration-300 group-hover:translate-x-1 ${isActive ? 'text-white' : 'text-gray-300'} ${isCollapsed ? 'w-0 opacity-0 overflow-hidden ml-0' : 'opacity-100 ml-4'}`}>
+                {item.name}
+              </span>
             </div>
-
-            <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/agent/pickup")}}>
-              <div className="text-xl">
-                <span><img src={orders} alt="orders icon" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
-              </div>
-              <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap">PickUps</span>
-            </div>
-
-            <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/agent/orders")}}>
-              <div className="text-xl">
-                <span><img src={OrdersForAgent} alt="orders icon" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
-              </div>
-              <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap">Orders</span>
-            </div>
-
-            <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/agent/profile")}}>
-              <div className="text-xl">
-                <span><img src={settings} alt="settings icon" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
-              </div>
-              <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap">Profile</span>
-            </div>
-
-            <div className="flex items-center text-white cursor-pointer hover:bg-white/10 rounded-lg p-2 transition-all duration-200" onClick={()=>{navigate("/agent/support")}}>
-              <div className="text-xl">
-                <span><img src={support} alt="support icon" className="w-5 h-5 md:w-5 md:h-5 lg:w-5 lg:h-5"/></span>
-              </div>
-              <span className="text-sm md:text-base font-medium ml-2 whitespace-nowrap">Support</span>
-            </div>
-          </div>
-
-        </div>
-     
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

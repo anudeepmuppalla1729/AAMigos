@@ -1,16 +1,15 @@
 import React , {useState , useEffect} from "react";
 import AgentNavbar from "../../components/Navbar";
-import AgentSidebar from "../../components/AgentSideBar";
+import AgentSidebar from "../../components/AgentSidebar";
 import PickUpReqCard from "../../components/PickUpReqCard";
 import axios from "axios";
+import { Briefcase } from "lucide-react";
 
 function AgentPickup() {
     const [pendingOrders, setPendingOrders] = useState([]);
 
      const handleDeclinedRequest = async (declinedOrderId) => {
-        // Get existing declined orders from localStorage
         const declinedOrders = JSON.parse(localStorage.getItem('declinedOrders') || '[]');
-        // Add new declined order ID if not already present
         if (!declinedOrders.includes(declinedOrderId)) {
             declinedOrders.push(declinedOrderId);
             localStorage.setItem('declinedOrders', JSON.stringify(declinedOrders));
@@ -35,38 +34,59 @@ function AgentPickup() {
     }, [])
 
   return (
-     <div className='bg-[#0d1117] h-screen w-screen flex flex-wrap'>
-            <div className='w-[100vw] h-[10%] bg-[#171925]'><AgentNavbar/></div>
-            <div className='bg-[#0d1117] h-[88%] w-[20%] flex justify-start items-center pl-11 pt-[1%]'><AgentSidebar/></div>
-            <div className='h-[84%] w-[80vw] flex  justify-start items-center pl-13'>
-                <div className='bg-[#0d1117] h-[95%] w-[92%] flex flex-wrap gap-[1.5vw] '>
-               
-                    
-                    <div className='bg-[#161b22] w-[100%] h-[100%] pt-[3%] flex flex-col items-center rounded-[15px] gap-3 mt-[2.5%] overflow-y-scroll scrollbar-hide'>
-                    <h2 className="text-white text-xl font-semibold mb-5">Pickup Requests</h2>  
-                    <style jsx>{`
-                        .scrollbar-hide::-webkit-scrollbar {
-                            display: none;
-                        }
-                        .scrollbar-hide {
-                            -ms-overflow-style: none;
-                            scrollbar-width: none;
-                        }
-                    `}</style>  
-                    {pendingOrders.length === 0  ? <div className="h-full w-full flex justify-center items-center"><p className="text-white mb-20">No Pending Requests</p></div> :   
-                    <div className="flex flex-wrap justify-start gap-x-5  ml-19 gap-y-5 gap-x-11 w-[97%]">
-                        {
-                          pendingOrders.map((order)=>{
-                                return <PickUpReqCard request={order} key={order._id} decline={()=>handleDeclinedRequest(order._id)}/>
-                            })
-                        }
-                    </div>}
-                </div>
+    <div className='bg-[#0d1117] min-h-screen w-full flex flex-col font-sans overflow-x-hidden'>
+        <AgentNavbar />
+        <div className='flex flex-1 overflow-hidden h-[calc(100vh-80px)]'>
+            {/* Sidebar Section */}
+            <div className='w-auto md:w-1/4 lg:w-1/5 flex justify-center pt-8'>
+                <AgentSidebar />
+            </div>
+            
+            {/* Main Content Area */}
+            <div className='flex-1 h-full p-8 overflow-y-auto custom-scrollbar'>
+                <style jsx>{`
+                    .custom-scrollbar::-webkit-scrollbar {
+                        width: 6px;
+                    }
+                    .custom-scrollbar::-webkit-scrollbar-track {
+                        background: transparent;
+                    }
+                    .custom-scrollbar::-webkit-scrollbar-thumb {
+                        background: #2A2D3E;
+                        border-radius: 10px;
+                    }
+                `}</style>
 
+                <div className='bg-[#171925]/80 backdrop-blur-xl border border-gray-800 rounded-2xl p-8 flex flex-col shadow-xl min-h-full'>
+                    <div className='flex items-center gap-3 mb-8 pb-6 border-b border-gray-800'>
+                        <Briefcase className="w-8 h-8 text-orange-500" />
+                        <div>
+                            <h2 className='text-2xl font-bold text-white'>Pickup Requests</h2>
+                            <p className="text-gray-400 text-sm">View and manage all available service requests in your area.</p>
+                        </div>
                     </div>
+
+                    {pendingOrders.length === 0 ? (
+                        <div className="flex-1 flex flex-col items-center justify-center bg-[#2A2D3E]/10 rounded-2xl border border-dashed border-gray-800 p-12">
+                            <Briefcase className="w-16 h-16 text-gray-700 mb-4" />
+                            <p className="text-gray-500 text-lg font-medium">No pending requests at the moment</p>
+                            <p className="text-gray-600 text-sm">New requests will appear here as they come in.</p>
+                        </div>
+                    ) : (
+                        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8'>
+                            {pendingOrders.map((order) => (
+                                <PickUpReqCard 
+                                    request={order} 
+                                    key={order._id} 
+                                    decline={() => handleDeclinedRequest(order._id)}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
-        
+        </div>
+    </div>
   );
 }
 

@@ -45,40 +45,55 @@ export const postRequest = async(req,res) => {
     try{
         console.log(req.body)
         const {modelname , warranty , imeiNumber ,issue} = req.body;
-        console.log(modelname);
+        console.log("Modelname received:", modelname);
+        
         if(!modelname || !warranty || !imeiNumber || !issue || !req.file){
             return res.status(400).json({message : "All fields are required"});
         }
+        
         const model =  await DeviceModel.findOne({name : modelname});
-        console.log(model._id);
+        if (!model) {
+            return res.status(404).json({message: "Device model not found in database"});
+        }
+        console.log("Model found:", model._id);
+        
         let warrantyStatus = false;
         if(warranty === "Yes"){
             warrantyStatus = true;
         }
+        
         const newDevice = await Device.create({
             imeiNumber,
             model : model._id,
-            owner : req.userDetails.id,
+            owner : req.userDetails._id,
             warranty : warrantyStatus,
             issue,
             invoicePdfUrl : req.file.path,
         });
 
-        console.log(newDevice);
+        console.log("New device created:", newDevice._id);
     
         const company = await Company.findById(model.company);
-        const serviceCenter = await ServiceCenter.findOne({companies : company._id});
+        let serviceCenterId = null;
+        
+        if (company) {
+            const serviceCenter = await ServiceCenter.findOne({companies : company._id});
+            if (serviceCenter) {
+                serviceCenterId = serviceCenter._id;
+            }
+        }
+        
         const newRequest = await Request.create({
-            user : req.userDetails.id,
+            user : req.userDetails._id,
             device : newDevice._id,
             status : "Pending",
-            selectedServiceCenter : serviceCenter._id,
+            selectedServiceCenter : serviceCenterId,
         });
-        console.log(newRequest);
+        console.log("New request created:", newRequest._id);
         res.status(201).json(newRequest);
     }
     catch(error){
-        console.log(error.message  );
+        console.error("Error in postRequest:", error);
         res.status(500).json({ error: error.message });
     }
 }

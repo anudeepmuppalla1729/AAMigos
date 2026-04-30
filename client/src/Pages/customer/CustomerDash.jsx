@@ -1,17 +1,11 @@
 import React, {useState , useEffect , useRef} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
-import arrow from '../../assets/arrow.png'
 import CustomerSidebar from '../../components/CustomerSidebar';
 import Navbar from '../../components/Navbar';
 import OngoingAssignments from '../../components/OngoingAssignments';
-import s23 from '../../assets/s23.png'
-import iph from '../../assets/iph.png'
-import clock from '../../assets/clock.png'
-import personsupport from '../../assets/personsupport.png'
-import ipadpro from '../../assets/ipadpro.png'
-import RequestedOrdersCarousel from '../../components/RequestedOrdersCarousel'
-
+import RequestedOrdersCarousel from '../../components/RequestedOrdersCarousel';
+import { Headset, MessageSquare, PhoneCall, ReceiptText } from 'lucide-react';
 
 function CustomerDashboard() {
     const navigate = useNavigate();
@@ -34,6 +28,7 @@ function CustomerDashboard() {
         } 
         fetchActiveOrders();
     },[]);
+    
     useEffect(()=>{
         if (pendingOrdersFetch.current) return;
         pendingOrdersFetch.current = true;
@@ -50,72 +45,135 @@ function CustomerDashboard() {
         }
         fetchPendingOrders();
     } ,[])
-    useEffect(() => {
-    console.log("Updated pendingOrders:", pendingOrders);
-}, [pendingOrders]);
 
-    let user = {
-        name: "John Doe",
-        profilePic: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-    }
-    let request = {
-        id: "1234567890",
-        status: "PickedUp",
-    }
-
-    const [time] = useState(new Date().toLocaleDateString("en-IN"));
-    let device = {
-    name: "Samsung s23 Ultra",
-    cost: 13000
-    }
+    const latestOrder = activeOrders.length > 0 ? activeOrders[0] : null;
 
     return (
-        <div className='bg-[#0d1117] h-screen w-screen flex flex-wrap'>
-            <div className='w-[100vw] h-[10vh] bg-[#171925]'><Navbar/></div>
-            <div className='bg-[#0d1117] h-[88%] w-[21%] flex justify-start items-center pl-11 pt-[2%]'><CustomerSidebar/></div>
-            <div className='h-[90%] w-[72vw] flex items-center pl-8'>
-                <div className='bg-[#0d1117] h-[85%] w-[100%] flex flex-wrap gap-[1.5vw] '>
-                    <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[2%] text-white flex flex-col'>
-                        <h2 className='sticky top-0 pb-6 ml-39 font-semibold'>Active Orders</h2>
-                        <div className='h-full flex flex-wrap justify-center gap-[15px] overflow-y-scroll scrollbar-hide'>
-                            <style jsx>{`
-                                .scrollbar-hide::-webkit-scrollbar {
-                                    display: none;
-                                }
-                                .scrollbar-hide {
-                                    -ms-overflow-style: none;
-                                    scrollbar-width: none;
-                                }
-                            `}</style>
-                            {activeOrders.length > 0 ? activeOrders.map((order) => (
-                                <OngoingAssignments order={order} key={order._id}/>
-                            )) : <div className='w-full flex justify-center '><p className='mb-3 mt-14.5'>No Active Orders</p></div> }
+        <div className='bg-[#0d1117] min-h-screen w-full flex flex-col font-sans'>
+            <Navbar />
+            <div className='flex flex-1 overflow-hidden h-[calc(100vh-80px)]'>
+                {/* Sidebar Section */}
+                <div className='w-auto md:w-1/4 lg:w-1/5 flex justify-center pt-8'>
+                    <CustomerSidebar />
+                </div>
+                
+                {/* Main Dashboard Area */}
+                <div className='flex-1 h-full p-8 overflow-y-auto'>
+                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 h-full'>
+                        
+                        {/* Active Orders Panel */}
+                        <div className='bg-[#171925]/80 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 flex flex-col shadow-xl'>
+                            <h2 className='text-xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-400'>Active Orders</h2>
+                            <div className='flex-1 overflow-y-auto pr-2 custom-scrollbar'>
+                                <style jsx>{`
+                                    .custom-scrollbar::-webkit-scrollbar {
+                                        width: 6px;
+                                    }
+                                    .custom-scrollbar::-webkit-scrollbar-track {
+                                        background: transparent;
+                                    }
+                                    .custom-scrollbar::-webkit-scrollbar-thumb {
+                                        background: #2A2D3E;
+                                        border-radius: 10px;
+                                    }
+                                `}</style>
+                                {activeOrders.length > 0 ? (
+                                    <div className="flex flex-col gap-3">
+                                        {activeOrders.map((order) => (
+                                            <OngoingAssignments order={order} key={order._id}/>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className='w-full h-full flex items-center justify-center'>
+                                        <p className='text-gray-500 font-medium'>No Active Orders</p>
+                                    </div> 
+                                )}
+                            </div>
                         </div>
-                    </div>
-                    <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[3%] pt-[2%] px-[2.5s%] text-white flex flex-wrap justify-center gap-[15px]'>
-                        <h2 className='pb-2 font-semibold'>Requested Orders</h2>
-                        {pendingOrders.length > 0 ? (<RequestedOrdersCarousel orders={pendingOrders}/> ): <div className='w-full flex justify-center'><p className='mb-3'>No Pending Orders</p></div>}
-                    </div>
-                    
-                    <div className='bg-[#161b22] w-[48.5%] h-[50%] rounded-[15px] p-[3%] pt-[2%] text-white flex flex-wrap justify-center gap-4'>
-                        <h2 className='font-semibold'>Payment Summary</h2>
-                        <div className='bg-[#22272d] w-[95%] h-[75%] h-[50%] rounded-[15px] flex flex-wrap justify-center items-start hover:scale-102 shadow-[0px_0px_6px_rgba(0,0,0,0.3)] hover:shadow-sm  hover:shadow-[#ffffff]/3 transition-all duration-300 ease-in-out'>
-                            <div className='bg-[#2d3238] w-[85%] h-[50%] mt-5 rounded-[15px] p-2.5 pt-3.5 pl-3.5 pr-7 flex justify-between'>
-                                <div>
-                                    <p className='text-[14px]'>Iphone 15 Pro Max</p>
-                                    <p className='text-[10px]'>Order ID: #4569013</p>
+
+                        {/* Requested Orders Panel */}
+                        <div className='bg-[#171925]/80 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 flex flex-col shadow-xl'>
+                            <h2 className='text-xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-400'>Requested Orders</h2>
+                            <div className='flex-1 flex items-center justify-center bg-[#2A2D3E]/20 rounded-xl border border-gray-700/50 overflow-hidden'>
+                                {pendingOrders.length > 0 ? (
+                                    <RequestedOrdersCarousel orders={pendingOrders}/> 
+                                ) : (
+                                    <p className='text-gray-500 font-medium'>No Pending Orders</p>
+                                )}
+                            </div>
+                        </div>
+                        
+                        {/* Payment Summary Panel */}
+                        <div className='bg-[#171925]/80 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 flex flex-col shadow-xl'>
+                            <div className="flex items-center gap-2 mb-6">
+                                <ReceiptText className="w-6 h-6 text-orange-500" />
+                                <h2 className='text-xl font-bold text-white'>Payment Summary</h2>
+                            </div>
+                            
+                            {latestOrder ? (
+                                <div className='flex-1 bg-[#2A2D3E]/40 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 flex flex-col justify-between hover:border-orange-500/30 transition-colors group relative overflow-hidden'>
+                                    {/* Decorative Gradient Blob */}
+                                    <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-orange-500/20 to-yellow-500/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+                                    
+                                    <div>
+                                        <p className='text-sm text-gray-400 font-medium uppercase tracking-wider mb-1'>Last Order</p>
+                                        <p className='text-xl text-white font-semibold'>{latestOrder.device?.model?.name || 'Unknown Device'}</p>
+                                        <p className='text-sm text-gray-500 font-mono mt-1'>Order ID: #{latestOrder._id?.slice(-6).toUpperCase()}</p>
+                                    </div>
+                                    
+                                    <div className="border-t border-dashed border-gray-700 my-4"></div>
+                                    
+                                    <div className='flex justify-between items-end relative z-10'>
+                                        <div>
+                                            <p className='text-sm text-gray-400 mb-1'>Total Amount</p>
+                                            <p className='text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400'>
+                                                {latestOrder.cost ? `₹${latestOrder.cost}` : 'Pending'}
+                                            </p>
+                                        </div>
+                                        <button 
+                                            className='bg-gradient-to-r from-[#FF4E00] to-[#FF7A00] hover:from-[#FF7A00] hover:to-[#FF4E00] text-white px-8 py-3 rounded-full text-sm font-semibold shadow-lg hover:shadow-orange-500/25 transition-all hover:-translate-y-0.5'
+                                            onClick={() => navigate("/customer/payment")}
+                                        >
+                                            Pay Now
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className='pt-0.5 p-0.5 flex flex-col items-center h-[100%]' >
-                                    <p className='text-[10px] text-gray-400'>Amount</p>
-                                    <p className='text-xl ' >16,000</p>
+                            ) : (
+                                <div className='flex-1 flex items-center justify-center bg-[#2A2D3E]/20 rounded-xl border border-gray-700/50'>
+                                    <p className='text-gray-500 font-medium'>No pending payments</p>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Customer Support Panel */}
+                        <div className='bg-[#171925]/80 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 flex flex-col shadow-xl overflow-hidden relative group'>
+                            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent z-0 pointer-events-none"></div>
+                            
+                            <h2 className='text-xl font-bold text-white mb-6 relative z-10'>Customer Support</h2>
+                            
+                            <div className='flex-1 flex flex-col items-center justify-center relative z-10 space-y-6'>
+                                <div className="w-20 h-20 bg-orange-500/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                                    <Headset className="w-10 h-10 text-orange-500" />
+                                </div>
+                                
+                                <div className="text-center space-y-2">
+                                    <h3 className="text-lg text-white font-medium">Need Help?</h3>
+                                    <p className="text-sm text-gray-400 max-w-[250px] mx-auto">Our support team is available 24/7 to resolve your issues.</p>
+                                </div>
+                                
+                                <div className="flex gap-4 w-full justify-center">
+                                    <button className="flex items-center gap-2 bg-[#2A2D3E] hover:bg-[#34384e] border border-gray-700 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-colors">
+                                        <MessageSquare className="w-4 h-4" />
+                                        Chat
+                                    </button>
+                                    <button className="flex items-center gap-2 bg-gradient-to-r from-[#FF4E00] to-[#FF7A00] hover:from-[#FF7A00] hover:to-[#FF4E00] text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg hover:shadow-orange-500/25">
+                                        <PhoneCall className="w-4 h-4" />
+                                        Call Us
+                                    </button>
                                 </div>
                             </div>
-                            <button className='w-20 h-6 bg-[#ff4e00] rounded-full text-sm hover:bg-[#ff5722]'>Pay</button>
                         </div>
-                    </div>
-                    <div className='bg-[#161b22] w-[48.5%] h-[50%]  p-[3%] pt-[2%] rounded-[15px] text-white flex flex-col items-center'>
-                        <h2 className='font-semibold'>Customer Support</h2>
-                        <div className='w-[100%] h-[100%] flex justify-center items-center mt-3 hover:scale-110 hover:shadow-sm  hover:shadow-[#ffffff]/3 transition-all duration-300 ease-in-out'><img src={personsupport}></img></div>
+
                     </div>
                 </div>
             </div>

@@ -30,7 +30,7 @@ import WaitingForUserResponse from './Pages/agent/waitingForUserResponse.jsx';
 import PackageSelection from './Pages/customer/PackageSelection.jsx';
 import axios from "axios";
 import { jwtDecode } from 'jwt-decode';
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "http://localhost:3001";
 
 const token = localStorage.getItem('token');
 if (token) {

@@ -1,19 +1,27 @@
-import react from 'react';
-import location from "../assets/location.png";
+import React from 'react';
+import { MapPin } from 'lucide-react';
 
-function OngoingAssignments(props) {
+function OngoingAssignments({ order }) {
+  if (!order) return null;
+
   return (
-    <div className='w-[90%] h-[41%] bg-[#ffffff]/5 p-3 mt-1 text-white pl-4.5 pr-4.5 rounded-[8px] flex justify-between items-center hover:scale-105 shadow-[0px_0px_9px_rgba(0,0,0,0.3)] hover:shadow-l  hover:shadow-[#ffffff]/5 transition-all duration-300 ease-in-out  '>
-        <div className='h-100% w-60% mb-1 flex  items-center gap-x-5 '>
-          <div className="w-[12%] h-full mr-2 mt-1">
-          <img src={props.order.device.model.img} className='w-[100%] rounded-md'></img>
+    <div className='w-full bg-[#2A2D3E]/40 backdrop-blur-sm border border-gray-700/50 p-3 mt-2 text-white rounded-xl flex justify-between items-center hover:-translate-y-1 hover:shadow-lg hover:border-orange-500/30 transition-all duration-300 ease-in-out group cursor-pointer'>
+        <div className='flex items-center gap-x-4 w-full'>
+          <div className="w-12 h-12 shrink-0 rounded-lg overflow-hidden bg-[#171925] border border-gray-700 group-hover:border-orange-500/50 p-1 flex items-center justify-center transition-colors">
+            <img src={order.device?.model?.img || 'https://via.placeholder.com/150'} className='max-w-full max-h-full object-contain drop-shadow-md' alt="Device" />
           </div>
-         <div>
-        <p className='text-[14px]'>{props.order.device.model.name}</p>
-        <h3 className='text-xs'>Order ID : #{props.order._id.slice(-6).toUpperCase()}</h3>
+         <div className='flex flex-col'>
+            <p className='text-sm font-semibold bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-400'>{order.device?.model?.name || 'Unknown Device'}</p>
+            <div className="flex items-center mt-0.5">
+              <span className="text-[10px] font-mono px-1.5 py-0.5 bg-[#171925] text-gray-400 rounded border border-gray-700">
+                #{order._id?.slice(-6).toUpperCase()}
+              </span>
+            </div>
         </div>
         </div>
-        <img src = {location} className='w-5 h-6'></img>
+        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-orange-500/10 group-hover:bg-orange-500 transition-colors duration-300 shrink-0">
+          <MapPin className="w-4 h-4 text-orange-500 group-hover:text-white transition-colors duration-300" />
+        </div>
     </div>
   );
 }

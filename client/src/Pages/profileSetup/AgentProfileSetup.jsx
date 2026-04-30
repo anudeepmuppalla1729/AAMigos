@@ -29,8 +29,8 @@ function AgentProfileSetup() {
 
   const handleNextStep = () => {
     if (currentStep === 1) {
-      if (!name || !phone) {
-        alert("Please fill all the required fields in step 1");
+      if (!name || !phone || !profilePic) {
+        alert("Please fill all the required fields (including profile picture) in step 1");
         return;
       }
       setCurrentStep(2);
@@ -82,8 +82,9 @@ function AgentProfileSetup() {
       navigate('/agent/Dashboard');
     } catch (error) {
       console.error("Error uploading profile:", error);
-      console.error("Error details:", error.response ? error.response.data : error.message);
-      alert(`Error: ${error.response ? error.response.data.message || JSON.stringify(error.response.data) : error.message}`);
+      const serverError = error.response?.data;
+      const errorMessage = serverError?.message || serverError?.error || error.message;
+      alert(`Error: ${errorMessage}`);
     }
   };
 
